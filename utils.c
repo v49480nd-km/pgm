@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "utils.h"
+
 int*
 getPwdInfo() {
     int num_pwd, len_pwd;
