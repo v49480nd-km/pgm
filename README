@@ -1,0 +1,9 @@
+# PGM
+## A Password Generator and Management Tool
+### Maintaner: +++km+++
+
+This is a simple password generator and management tool for the cli written in C.
+Allows the user to generate a set amount of passwords and desired length. Along
+with storing and viewing password pairs. It is still recommended that you use
+a good old pen and pad for your password management, while it may be secure
+it will never be secure enough it is on a computer.
