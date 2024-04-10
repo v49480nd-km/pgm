@@ -1,3 +1,4 @@
-* b31ab2d (HEAD -> master) made makefile for making files
+* 89e4e76 (HEAD -> master) updated file names, makefile, changed password generation
+* b31ab2d made makefile for making files
 * d587b8b added license, readme and makefile along with gitignore
 * 3b0aa5c did some refactoring
