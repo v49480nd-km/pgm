@@ -2,8 +2,17 @@
 ## A Password Generator and Management Tool
 ### Maintaner: +++km+++
 
-This is a simple password generator and management tool for the cli written in C.
-Allows the user to generate a set amount of passwords and desired length. Along
-with storing and viewing password pairs. It is still recommended that you use
-a good old pen and pad for your password management, while it may be secure
-it will never be secure enough it is on a computer.
+A password generator and management tool written in C. Get a password, store it
+with some form of encryption that may or may not be known as a pair. See passwords
+previosly stored. Delete passwords.
+
+### TODO
+- ~~Generate functionality~~
+- Encrypt functionality
+- Decrypt functionality
+- Set password for viewing
+- Store password (encrypted)
+- Change password
+- Store password pairs encrypted
+- Read password pairs
+- Delete password pairs
