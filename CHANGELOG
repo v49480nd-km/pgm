@@ -1,4 +1,5 @@
-* 89e4e76 (HEAD -> master) updated file names, makefile, changed password generation
+* 2849d0e (HEAD -> master) working out some kinks, but able to return array from generate function
+* 89e4e76 updated file names, makefile, changed password generation
 * b31ab2d made makefile for making files
 * d587b8b added license, readme and makefile along with gitignore
 * 3b0aa5c did some refactoring

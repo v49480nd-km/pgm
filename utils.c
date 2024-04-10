@@ -29,6 +29,8 @@ generatePwd() {
         printf("%c", pwd[j]);
     }
 
+    printf("\n");
+
     return pwd;
 }
 
@@ -37,6 +39,10 @@ storePwd(char pwd[20]) {
     FILE* storeFile;
     storeFile = fopen("config.txt", "a");
 
-    fprintf(storeFile, "%d", *pwd);
+    for (int i = 0; i < 20; i++) {
+        fprintf(storeFile, "%c", pwd[i]);
+    }
+
+    fprintf(storeFile, "\n");
     fclose(storeFile);
 }
