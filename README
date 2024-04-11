@@ -7,11 +7,12 @@ with some form of encryption that may or may not be known as a pair. See passwor
 previosly stored. Delete passwords.
 
 ### TODO
+- CLI stuff
 - ~~Generate functionality~~
 - Encrypt functionality
 - Decrypt functionality
 - Set password for viewing
-- Store password (encrypted)
+- ~~Store password~~ (encrypted)
 - Change password
 - Store password pairs encrypted
 - Read password pairs

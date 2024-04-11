@@ -4,7 +4,7 @@
 #include "utils.h"
 
 int
-main() {
+main(/* int argc, char* argv[] */) {
     char* newPwd = generatePwd();
 
     storePwd(newPwd);
