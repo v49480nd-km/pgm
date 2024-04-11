@@ -4,14 +4,14 @@
 
 #include "utils.h"
 
+#define PWD_LENGTH 20
+#define PWD_CHARS \
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()" \
+
 char*
 generatePwd() {
-    const int PWD_LENGTH = 20;
-    const char PWD_CHARS[72] =
-        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()";
-    
     int rand_int;
-    char* pwd = (char*)malloc(20 * sizeof(char));
+    char* pwd = (char*)malloc(PWD_LENGTH * sizeof(char));
 
     if (pwd == NULL) {
         printf("Error, memory not allocated\n");
@@ -25,21 +25,15 @@ generatePwd() {
         pwd[i] = PWD_CHARS[rand_int];
     }
 
-    for (int j = 0; j < PWD_LENGTH; j++) {
-        printf("%c", pwd[j]);
-    }
-
-    printf("\n");
-
     return pwd;
 }
 
 void
-storePwd(char pwd[20]) {
+storePwd(char pwd[PWD_LENGTH]) {
     FILE* storeFile;
     storeFile = fopen("config.txt", "a");
 
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < PWD_LENGTH; i++) {
         fprintf(storeFile, "%c", pwd[i]);
     }
 
