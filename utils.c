@@ -8,6 +8,17 @@
 #define PWD_CHARS \
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()" \
 
+int
+generatePin() {
+    int pin;
+
+    srand(time(NULL));
+    
+    pin = rand() % (999 - 100 + 1) + 100;
+
+    return pin;
+}
+
 char*
 generatePwd() {
     int rand_int;
@@ -31,7 +42,12 @@ generatePwd() {
 void
 storePwd(char pwd[PWD_LENGTH]) {
     FILE* storeFile;
+    int pin;
+
+    pin = generatePin();
     storeFile = fopen("config.txt", "a");
+
+    fprintf(storeFile, "[%d] ", pin);
 
     for (int i = 0; i < PWD_LENGTH; i++) {
         fprintf(storeFile, "%c", pwd[i]);

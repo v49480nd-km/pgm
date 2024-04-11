@@ -1,5 +1,11 @@
+int
+generatePin();
+
 char*
 generatePwd();
+
+char*
+generateId();
 
 char*
 encrypt(char pwd[20]);
@@ -14,7 +20,7 @@ void
 listPwd();
 
 void
-delete(int pwd_pair_id);
+delete(int pin);
 
 void
 clearAll();
