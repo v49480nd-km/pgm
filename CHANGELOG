@@ -1,4 +1,5 @@
-* 75d4b2f (HEAD -> master) ran test to make sure freeing right memory allocation, passed btw
+* 1d320c6 (HEAD -> master) made some macros instead of constants, got rid of printing pwd to terminal
+* 75d4b2f ran test to make sure freeing right memory allocation, passed btw
 * f03ab1a able to store pwd unencrypted
 * 2849d0e working out some kinks, but able to return array from generate function
 * 89e4e76 updated file names, makefile, changed password generation

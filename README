@@ -1,19 +1,59 @@
 # PGM
-## A Password Generator and Management Tool
-### Maintaner: +++km+++
 
-A password generator and management tool written in C. Get a password, store it
-with some form of encryption that may or may not be known as a pair. See passwords
-previosly stored. Delete passwords.
+## Description
 
-### TODO
-- CLI stuff
-- ~~Generate functionality~~
-- Encrypt functionality
-- Decrypt functionality
-- Set password for viewing
-- ~~Store password~~ (encrypted)
-- Change password
-- Store password pairs encrypted
-- Read password pairs
-- Delete password pairs
+A password/pin generator and management tool written in C. This is a CLI tool
+for generating, and managing password/pin pairs on your system. I must advise
+their is nothing as secure as writing it down, yes everything is encrypted but
+it is still on a device that can be connected to unlike pen and paper.
+
+- This tool was made for the purpose of not only storing password/pin pairs in
+an encrypted manner but generating more secure and random passwords/pins.
+
+- The reason this project was made for the purpose of creating a secure encrypted
+password generator and management tool as well as practice with CLI programs.
+
+## Installation
+
+As of now this project can not be installed.
+
+## Usage
+
+### Generating
+
+```bash
+pgm --generate-pwd-pair
+pgm --generate-pin-pair
+```
+
+### Viewing
+
+```bash
+pgm --list-pairs
+```
+
+### Deleting
+```bash
+pgm --delete-pair [id]
+pgm --clear-pairs
+```
+
+## Credits
+Maintainer: km
+
+Contributers: km
+
+## How to Contribute
+
+If you wish to contribute to this project, please contact me through PGP
+encryption ONLY. If you cannot find my key you will not be allowed to contribute.
+Please state why you wish to contribute and what you think you would try to work
+on first. I am open to contributions and working with other people, but I prefer
+to remain anonymous and guarantee security above all else. 
+
+If you are accepted to make contributions, I will not ask you to make contributions
+or maintain a steady flow of commits because this is not a job and I am not your
+boss. Please feel free to contribute as you please. I am open to conversations
+as long as they are through PGP encryption. Please feel free to recommend things
+that can be fixed/improved upon. Or just talk to me about something you find
+interesting.

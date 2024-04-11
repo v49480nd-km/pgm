@@ -5,10 +5,10 @@ FILES = main.c utils.c
 OBJECTS = main.o utils.o
 
 pwd: $(OBJECTS)
-	gcc -o $@ $^ $(LDFLAGS) $(CFLAGS)
+	$(CC) -o $@ $^ $(LDFLAGS) $(CFLAGS)
 
 %.o: %.c
-	gcc -c $(CFLAGS) $^ -o $@
+	$(CC) -c $(CFLAGS) $^ -o $@
 
 clean:
 	rm -f *.o
