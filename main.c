@@ -4,9 +4,9 @@
 
 int
 main(/* int argc, char* argv[] */) {
-    char* newPwd = generatePwd();
+    char* random_test = generate(PWD_LENGTH, PWD_CHARS);
 
-    storePwd(newPwd);
-    free(newPwd);
+    free(random_test);
+
     return 0;
 }

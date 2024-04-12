@@ -1,4 +1,5 @@
-* 6eccff5 (HEAD -> master) updated README, updated Makefile
+* 0053bf9 (HEAD -> master) added id system for storing
+* 6eccff5 updated README, updated Makefile
 * 1d320c6 made some macros instead of constants, got rid of printing pwd to terminal
 * 75d4b2f ran test to make sure freeing right memory allocation, passed btw
 * f03ab1a able to store pwd unencrypted

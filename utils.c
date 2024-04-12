@@ -1,58 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 #include "utils.h"
 
-#define PWD_LENGTH 20
-#define PWD_CHARS \
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()" \
-
-int
-generatePin() {
-    int pin;
-
-    srand(time(NULL));
-    
-    pin = rand() % (999 - 100 + 1) + 100;
-
-    return pin;
-}
-
 char*
-generatePwd() {
-    int rand_int;
-    char* pwd = (char*)malloc(PWD_LENGTH * sizeof(char));
+generate(const int SIZE, const char* CHARSET) {
+    int rand_int, charset_size;
 
-    if (pwd == NULL) {
-        printf("Error, memory not allocated\n");
-        exit(0);
-    }
+    charset_size = strlen(CHARSET);
+    char* new_item = (char*)malloc(SIZE * sizeof(char));
 
     srand(time(NULL));
 
-    for (int i = 0; i < PWD_LENGTH; i++) {
-        rand_int = rand() % 72 + 1;
-        pwd[i] = PWD_CHARS[rand_int];
+    for (int i = 0; i < SIZE; i++) {
+        rand_int = rand() % charset_size + 1;
+        new_item[i] = CHARSET[rand_int];
     }
 
-    return pwd;
-}
-
-void
-storePwd(char pwd[PWD_LENGTH]) {
-    FILE* storeFile;
-    int pin;
-
-    pin = generatePin();
-    storeFile = fopen("config.txt", "a");
-
-    fprintf(storeFile, "[%d] ", pin);
-
-    for (int i = 0; i < PWD_LENGTH; i++) {
-        fprintf(storeFile, "%c", pwd[i]);
+    for (int j = 0; j < SIZE; j++) {
+        printf("%c", new_item[j]);
     }
 
-    fprintf(storeFile, "\n");
-    fclose(storeFile);
+    printf("\n");
+
+    return new_item;
 }

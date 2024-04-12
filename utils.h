@@ -1,26 +1,27 @@
-int
-generatePin();
+#include <stdio.h>
+
+#define ID_LENGTH 3
+#define SHORT_PIN_LENGTH 4
+#define LONG_PIN_LENGTH 6
+#define PWD_LENGTH 20
+#define ID_CHARS "abcdefghijklmnopqrstuvwxyz1234567890"
+#define PIN_CHARS "1234567890"
+#define PWD_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ1234567890!@#$%^&*()"
 
 char*
-generatePwd();
+generate(const int SIZE, const char* CHARSET);
+
+void
+storePair(FILE* store_file, const char* encrypted_string);
+
+void
+setPassphrase(const char* user_passphrase);
+
+void
+listPairs(const char* user_passphrase);
 
 char*
-generateId();
+encrypt(const char* clean_string);
 
 char*
-encrypt(char pwd[20]);
-
-void
-storePwd(char pwd[20]);
-
-int
-decrypt(char passphrase[]);
-
-void
-listPwd();
-
-void
-delete(int pin);
-
-void
-clearAll();
+decrypt(const char* user_passphrase);
