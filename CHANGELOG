@@ -1,4 +1,5 @@
-* 9dfbd05 (HEAD -> master) made it one generate function, more macros
+* a40af0f (HEAD -> newBuild) updated build system with bash script
+* 9dfbd05 (master) made it one generate function, more macros
 * 0053bf9 added id system for storing
 * 6eccff5 updated README, updated Makefile
 * 1d320c6 made some macros instead of constants, got rid of printing pwd to terminal
