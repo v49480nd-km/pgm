@@ -3,7 +3,7 @@
 #include "utils.h"
 
 int
-main(/* int argc, char* argv[] */) {
+main(void) {
     char* random_test = generate(PWD_LENGTH, PWD_CHARS);
 
     free(random_test);
