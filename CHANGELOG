@@ -1,4 +1,5 @@
-* 579ba6b (HEAD -> master) updated build file
+* 1584846 (HEAD -> master) renamed project folder, fixed bug with output to file
+* 579ba6b updated build file
 * 34a85fb added TODO
 * 768e163 output to file, added print function
 * e9ddb3e updated changelog
