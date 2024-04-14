@@ -7,20 +7,20 @@
 
 void
 printToFile(FILE* file, const int STRING_SIZE, const char* string) {
-    for (int i = 0; i < STRING_SIZE; i++) {
+    for (int i = 0x0; i < STRING_SIZE; i++) {
         fprintf(file, "%c", string[i]);
     }
 }
 
 char*
-generate(const int SIZE, const char* CHARSET) {
+generate(const int OUTPUT_SIZE, const int CHARSET_SIZE, const char* CHARSET) {
     int rand_int;
-    char* new_item = (char*)malloc(SIZE * sizeof(char));
+    char* new_item = (char*)malloc(OUTPUT_SIZE * sizeof(char));
 
     srand(time(NULL));
 
-    for (int i = 0; i < SIZE; i++) {
-        rand_int = rand() % (SIZE + 1);
+    for (int i = 0x0; i < OUTPUT_SIZE; i++) {
+        rand_int = rand() % (CHARSET_SIZE + 0x1);
         new_item[i] = CHARSET[rand_int];
     }
 
@@ -30,7 +30,7 @@ generate(const int SIZE, const char* CHARSET) {
 void
 storePair(const int STRING_SIZE, const char* encrypted_string) {
     FILE* store_file;
-    char* pair_id = generate(ID_LENGTH, ID_CHARS);
+    char* pair_id = generate(ID_LENGTH, ID_CHAR_SIZE, ID_CHARS);
 
     store_file = fopen("test.txt", "a");
     

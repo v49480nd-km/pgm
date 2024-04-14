@@ -1,4 +1,5 @@
-* 1584846 (HEAD -> master) renamed project folder, fixed bug with output to file
+* 6b6778a (HEAD -> master) updated gitignore, updated build script, added clean script
+* 1584846 renamed project folder, fixed bug with output to file
 * 579ba6b updated build file
 * 34a85fb added TODO
 * 768e163 output to file, added print function
