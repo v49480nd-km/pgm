@@ -8,11 +8,14 @@
 #define PIN_CHARS "1234567890"
 #define PWD_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ1234567890!@#$%^&*()"
 
+void
+printToFile(FILE* file, const int STRING_SIZE, const char* string);
+
 char*
 generate(const int SIZE, const char* CHARSET);
 
 void
-storePair(FILE* store_file, const char* encrypted_string);
+storePair(const char* encrypted_string);
 
 void
 setPassphrase(const char* user_passphrase);

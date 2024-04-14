@@ -5,6 +5,13 @@
 
 #include "utils.h"
 
+void
+printToFile(FILE* file, const int STRING_SIZE, const char* string) {
+    for (int i = 0; i < STRING_SIZE; i++) {
+        fprintf(file, "%c", string[i]);
+    }
+}
+
 char*
 generate(const int SIZE, const char* CHARSET) {
     int rand_int, charset_size;
@@ -19,11 +26,22 @@ generate(const int SIZE, const char* CHARSET) {
         new_item[i] = CHARSET[rand_int];
     }
 
-    for (int j = 0; j < SIZE; j++) {
-        printf("%c", new_item[j]);
-    }
-
-    printf("\n");
-
     return new_item;
+}
+
+void
+storePair(const char* encrypted_string) {
+    FILE* store_file;
+    char* pair_id = generate(ID_LENGTH, ID_CHARS);
+
+    store_file = fopen("test.txt", "a");
+    
+    printToFile(store_file, ID_LENGTH, pair_id);
+    fprintf(store_file, ". ");
+
+    printToFile(store_file, PWD_LENGTH, encrypted_string);
+    fprintf(store_file, "\n");
+
+    free(pair_id);
+    fclose(store_file);
 }
