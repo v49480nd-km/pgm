@@ -14,15 +14,13 @@ printToFile(FILE* file, const int STRING_SIZE, const char* string) {
 
 char*
 generate(const int SIZE, const char* CHARSET) {
-    int rand_int, charset_size;
-
-    charset_size = strlen(CHARSET);
+    int rand_int;
     char* new_item = (char*)malloc(SIZE * sizeof(char));
 
     srand(time(NULL));
 
     for (int i = 0; i < SIZE; i++) {
-        rand_int = rand() % charset_size + 1;
+        rand_int = rand() % (SIZE + 1);
         new_item[i] = CHARSET[rand_int];
     }
 
@@ -30,7 +28,7 @@ generate(const int SIZE, const char* CHARSET) {
 }
 
 void
-storePair(const char* encrypted_string) {
+storePair(const int STRING_SIZE, const char* encrypted_string) {
     FILE* store_file;
     char* pair_id = generate(ID_LENGTH, ID_CHARS);
 
@@ -39,7 +37,7 @@ storePair(const char* encrypted_string) {
     printToFile(store_file, ID_LENGTH, pair_id);
     fprintf(store_file, ". ");
 
-    printToFile(store_file, PWD_LENGTH, encrypted_string);
+    printToFile(store_file, STRING_SIZE, encrypted_string);
     fprintf(store_file, "\n");
 
     free(pair_id);

@@ -15,7 +15,7 @@ char*
 generate(const int SIZE, const char* CHARSET);
 
 void
-storePair(const char* encrypted_string);
+storePair(const int STRING_SIZE, const char* encrypted_string);
 
 void
 setPassphrase(const char* user_passphrase);
