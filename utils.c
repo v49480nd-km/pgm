@@ -20,7 +20,7 @@ generate(const int OUTPUT_SIZE, const int CHARSET_SIZE, const char* CHARSET) {
     srand(time(NULL));
 
     for (int i = 0x0; i < OUTPUT_SIZE; i++) {
-        rand_int = rand() % (CHARSET_SIZE + 0x1);
+        rand_int = rand() % (CHARSET_SIZE);
         new_item[i] = CHARSET[rand_int];
     }
 
