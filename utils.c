@@ -5,15 +5,13 @@
 
 #include "utils.h"
 
-void
-printToFile(FILE* file, const int STRING_SIZE, const char* string) {
+void printToFile(FILE* file, const int STRING_SIZE, const char* string) {
     for (int i = 0x0; i < STRING_SIZE; i++) {
         fprintf(file, "%c", string[i]);
     }
 }
 
-char*
-generate(const int OUTPUT_SIZE, const int CHARSET_SIZE, const char* CHARSET) {
+char* generate(const int OUTPUT_SIZE, const int CHARSET_SIZE, const char* CHARSET) {
     int rand_int;
     char* new_item = (char*)malloc(OUTPUT_SIZE * sizeof(char));
 
@@ -27,8 +25,7 @@ generate(const int OUTPUT_SIZE, const int CHARSET_SIZE, const char* CHARSET) {
     return new_item;
 }
 
-void
-storePair(const int STRING_SIZE, const char* encrypted_string) {
+void storePair(const int STRING_SIZE, const char* encrypted_string) {
     FILE* store_file;
     char* pair_id = generate(ID_LENGTH, ID_CHAR_SIZE, ID_CHARS);
 
@@ -42,4 +39,17 @@ storePair(const int STRING_SIZE, const char* encrypted_string) {
 
     free(pair_id);
     fclose(store_file);
+}
+
+void setPassphrase(char* passphrase, const int PASS_SIZE) {
+    FILE* pass_file;
+    
+    pass_file = fopen("pass.txt", "w");
+
+    for (int i = 0x0; i < PASS_SIZE; i++) {
+        fprintf(pass_file, "%c", passphrase[i]);
+    }
+
+    free(passphrase);
+    fclose(pass_file);
 }

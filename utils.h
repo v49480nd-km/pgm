@@ -11,23 +11,18 @@
 #define PIN_CHARS "1234567890"
 #define PWD_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ1234567890!@#$%^&*()"
 
-void
-printToFile(FILE* file, const int STRING_SIZE, const char* string);
+void printToFile(FILE* file, const int STRING_SIZE, const char* string);
 
-char*
-generate(const int OUTPUT_SIZE, const int CHARSET_SIZE, const char* CHARSET);
+char* generate(const int OUTPUT_SIZE,
+                const int CHARSET_SIZE,
+                const char* CHARSET);
 
-void
-storePair(const int STRING_SIZE, const char* encrypted_string);
+void storePair(const int STRING_SIZE, const char* encrypted_string);
 
-void
-setPassphrase(const char* user_passphrase);
+void setPassphrase(char* user_passphrase, const int PASS_SIZE);
 
-void
-listPairs(const char* user_passphrase);
+void listPairs(const char* user_passphrase);
 
-char*
-encrypt(const char* clean_string);
+char* encrypt(const char* clean_string);
 
-char*
-decrypt(const char* user_passphrase);
+char* decrypt(const char* user_passphrase);
