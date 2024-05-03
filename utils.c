@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 
 #include "utils.h"
 
@@ -20,12 +21,39 @@ void generate(Pair* pair) {
     }
 }
 
+void getId(Pair* pair) {
+    char c;
+    int i = 0;
+
+    printf("Input a 4 letter id name Ex: ytbe\n");
+
+    while (i < 4) {
+        c = getchar();
+        pair->id[i] = c;
+        i++;
+    }
+}
+
+void storePair(Pair* pair) {
+    FILE* fp;
+
+    fp = fopen("hidden.txt", "a");
+
+    if (fp == NULL) {
+        printf("Could not open file. Please try again.\n");
+        exit(0);
+    }
+
+    fprintf(fp, "%s. %s\n", pair->id, pair->pwd);
+    fclose(fp);
+}
+
 void helpScreen() {
     printf(
-        "--help -> show commands\n"
-        "--generate -> generate and store password\n"
-        "--list -> list all pairs\n"
-        "--delete-pair -> delete pair by id\n"
-        "--delete-pairs -> remove all pairs\n"
+        "--help         show commands\n"
+        "--generate     generate and store password\n"
+        "--list         list all pairs\n"
+        "--delete-pair  delete pair by id\n"
+        "--delete-pairs remove all pairs\n"
     );
 }

@@ -14,8 +14,9 @@ int main(int argc, char* argv[]) {
         Pair pair;
 
         initPair(&pair);
+        getId(&pair);
         generate(&pair);
-        printf("%s\n", pair.pwd);
+        storePair(&pair);
     } else if (strcmp(argv[1], LIST) == 0) {
         printf("Listing pairs\n");
     } else if (strcmp(argv[1], DELETE) == 0) {

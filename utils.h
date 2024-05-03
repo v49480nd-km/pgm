@@ -23,6 +23,7 @@ typedef struct {
 
 void initPair(Pair* pair);
 void generate(Pair* pair);
+void getId(Pair* pair);
 void storePair(Pair* pair);
 void encrypt(Pair* pair);
 void dencrypt(const char* passphrase);
