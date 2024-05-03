@@ -6,7 +6,7 @@
 #define ID_LENGTH 4
 #define PWD_LENGTH 20
 #define PWD_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
-#define NUM_CHARS sizeof(PWD_CHARS) / sizeof(PWD_CHARS[0]);
+#define NUM_CHARS sizeof(PWD_CHARS) / sizeof(PWD_CHARS[0]) - 1
 
 typedef struct {
     char* id;

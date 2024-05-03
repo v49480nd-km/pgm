@@ -3,10 +3,10 @@
 #include "utils.h"
 
 int main(int argc, char* argv[]) {
-    Pair* test;
+    Pair test;
 
     printf("Hello world\n");
-    initPair(test);
-    //generate(test);
-    //printf("%s\n", test->pwd);
+    initPair(&test);
+    generate(&test);
+    printf("%s\n", test.pwd);
 }

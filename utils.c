@@ -5,8 +5,8 @@
 #include "utils.h"
 
 void initPair(Pair* newPair) {
-    newPair->id = (char*)calloc(ID_LENGTH, sizeof(char));
-    newPair->pwd = (char*)calloc(PWD_LENGTH, sizeof(char));
+    newPair->id = (char*)malloc(ID_LENGTH * sizeof(char));
+    newPair->pwd = (char*)malloc(PWD_LENGTH * sizeof(char));
 }
 
 void generate(Pair* pair) {
