@@ -1,14 +1,14 @@
 #!/bin/bash
 
-CC=gcc
-FLAGS=(-Wall -Wpedantic -V -0fast -pipe -std=gnu18)
+SRC=(main.c utils.c)
+OBJ=(main.o utils.o)
 
 echo "Compiling..."
-sleep 3
-$CC ${FLAGS} -c *.c
+gcc -std=gnu18 -Ofast -w main.c utils.c -c
 
-echo "Linking..."
-sleep 3
-$CC ${FLAGS} -o pgm *.o
-
-echo "Finished"
+if [[ -f main.o && -f utils.o ]] then
+    echo "Linking..."
+    gcc -std=gnu18 -Ofast -w  main.o utils.o -o pgm
+else
+    echo "Error"
+fi

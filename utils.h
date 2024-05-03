@@ -1,28 +1,24 @@
-#include <stdio.h>
+#ifndef UTILS_H
+#define UTILS_H
 
-#define ID_LENGTH 0x3
-#define SHORT_PIN_LENGTH 0x4
-#define LONG_PIN_LENGTH 0x6
-#define PWD_LENGTH 0x14
-#define ID_CHAR_SIZE 0x24
-#define PIN_CHAR_SIZE 0xA
-#define PWD_CHAR_SIZE 0x48
-#define ID_CHARS "abcdefghijklmnopqrstuvwxyz1234567890"
-#define PIN_CHARS "1234567890"
-#define PWD_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ1234567890!@#$%^&*()"
+#include <stdlib.h>
 
-void printToFile(FILE* file, const int STRING_SIZE, const char* string);
+#define ID_LENGTH 4
+#define PWD_LENGTH 20
+#define PWD_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
+#define NUM_CHARS sizeof(PWD_CHARS) / sizeof(PWD_CHARS[0]);
 
-char* generate(const int OUTPUT_SIZE,
-                const int CHARSET_SIZE,
-                const char* CHARSET);
+typedef struct {
+    char* id;
+    char* pwd;
+} Pair;
 
-void storePair(const int STRING_SIZE, const char* encrypted_string);
+void initPair(Pair* newPair);
+void generate(Pair* pair);
+void storePair(Pair* pair);
+void encrypt(Pair* pair);
+void dencrypt();
+void deletePair(const char* id);
+void deletePairs();
 
-void setPassphrase(char* user_passphrase, const int PASS_SIZE);
-
-void listPairs(const char* user_passphrase);
-
-char* encrypt(const char* clean_string);
-
-char* decrypt(const char* user_passphrase);
+#endif

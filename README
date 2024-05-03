@@ -1,59 +1,24 @@
 # PGM
+PGM is a Password Generator and Manager tool written in C. The goal in mind is
+to generate password pairs with user given ids up to four characters.
 
-## Description
-
-A password/pin generator and management tool written in C. This is a CLI tool
-for generating, and managing password/pin pairs on your system. I must advise
-their is nothing as secure as writing it down, yes everything is encrypted but
-it is still on a device that can be connected to unlike pen and paper.
-
-- This tool was made for the purpose of not only storing password/pin pairs in
-an encrypted manner but generating more secure and random passwords/pins.
-
-- The reason this project was made for the purpose of creating a secure encrypted
-password generator and management tool as well as practice with CLI programs.
+They are stored encrypted in a format similar to 
+> ytbe - areallystrongpasswordyoucouldntguessbecauseyouarentsmartenoughtolol
 
 ## Installation
-
-As of now this project can not be installed.
+```bash
+git clone <link>
+cd pgm
+./build.sh
+```
 
 ## Usage
-
-### Generating
-
-```bash
-pgm --generate-pwd-pair
-pgm --generate-pin-pair
-```
-
-### Viewing
-
-```bash
+pgm -h, --help
+pgm --generate-password
+pgm --generate-pin
 pgm --list-pairs
-```
+pgm --delete-pair
+pgm --delete-pairs
 
-### Deleting
-```bash
-pgm --delete-pair [id]
-pgm --clear-pairs
-```
-
-## Credits
-Maintainer: km
-
-Contributers: km
-
-## How to Contribute
-
-If you wish to contribute to this project, please contact me through PGP
-encryption ONLY. If you cannot find my key you will not be allowed to contribute.
-Please state why you wish to contribute and what you think you would try to work
-on first. I am open to contributions and working with other people, but I prefer
-to remain anonymous and guarantee security above all else. 
-
-If you are accepted to make contributions, I will not ask you to make contributions
-or maintain a steady flow of commits because this is not a job and I am not your
-boss. Please feel free to contribute as you please. I am open to conversations
-as long as they are through PGP encryption. Please feel free to recommend things
-that can be fixed/improved upon. Or just talk to me about something you find
-interesting.
+## Contributions
+Right now I am not accepting contributors; Sorry.

@@ -1,12 +1,12 @@
-#include <stdlib.h>
+#include <stdio.h>
 
 #include "utils.h"
 
-int main(void) {
-    char* random_test = generate(PWD_LENGTH, PWD_CHAR_SIZE, PWD_CHARS);
+int main(int argc, char* argv[]) {
+    Pair* test;
 
-    storePair(PWD_LENGTH, random_test);
-    free(random_test);
-
-    return 0;
+    printf("Hello world\n");
+    initPair(test);
+    //generate(test);
+    //printf("%s\n", test->pwd);
 }
