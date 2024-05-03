@@ -13,10 +13,9 @@ cd pgm
 ```
 
 ## Usage
-pgm -h, --help
-pgm --generate-password
-pgm --generate-pin
-pgm --list-pairs
+pgm --help
+pgm --generate
+pgm --list
 pgm --delete-pair
 pgm --delete-pairs
 

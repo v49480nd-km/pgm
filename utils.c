@@ -19,3 +19,13 @@ void generate(Pair* pair) {
         pair->pwd[i] = PWD_CHARS[rand_int];
     }
 }
+
+void helpScreen() {
+    printf(
+        "--help -> show commands\n"
+        "--generate -> generate and store password\n"
+        "--list -> list all pairs\n"
+        "--delete-pair -> delete pair by id\n"
+        "--delete-pairs -> remove all pairs\n"
+    );
+}

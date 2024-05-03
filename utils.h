@@ -3,6 +3,14 @@
 
 #include <stdlib.h>
 
+// CLI MACROS
+#define HELP "--help"
+#define GEN "--generate"
+#define LIST "--list"
+#define DELETE "--delete-pair"
+#define DELETE_ALL "--delete-pairs"
+
+// GENERATING MACROS
 #define ID_LENGTH 4
 #define PWD_LENGTH 20
 #define PWD_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
@@ -13,12 +21,13 @@ typedef struct {
     char* pwd;
 } Pair;
 
-void initPair(Pair* newPair);
+void initPair(Pair* pair);
 void generate(Pair* pair);
 void storePair(Pair* pair);
 void encrypt(Pair* pair);
-void dencrypt();
+void dencrypt(const char* passphrase);
 void deletePair(const char* id);
 void deletePairs();
+void helpScreen();
 
 #endif
