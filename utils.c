@@ -46,6 +46,8 @@ void storePair(Pair* pair) {
 
     fprintf(fp, "%s. %s\n", pair->id, pair->pwd);
     fclose(fp);
+    free(pair->id);
+    free(pair->pwd);
 }
 
 void helpScreen() {
