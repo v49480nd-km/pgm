@@ -50,12 +50,21 @@ void storePair(Pair* pair) {
     free(pair->pwd);
 }
 
+void deletePairs() {
+    if (remove("hidden.txt") != 0) {
+        printf("Unable to delete, please try again.\n");
+        exit(0);
+    }
+
+    printf("Pairs deleted.\n");
+}
+
 void helpScreen() {
     printf(
         "--help         show commands\n"
         "--generate     generate and store password\n"
         "--list         list all pairs\n"
-        "--delete-pair  delete pair by id\n"
-        "--delete-pairs remove all pairs\n"
+        "--delete  delete pair by id\n"
+        "--delete-all remove all pairs\n"
     );
 }

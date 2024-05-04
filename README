@@ -16,8 +16,8 @@ cd pgm
 pgm --help
 pgm --generate
 pgm --list
-pgm --delete-pair
-pgm --delete-pairs
+pgm --delete
+pgm --delete-all
 
 ## Contributions
 Right now I am not accepting contributors; Sorry.

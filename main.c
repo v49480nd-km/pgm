@@ -23,6 +23,7 @@ int main(int argc, char* argv[]) {
         printf("Deleting pair\n");
     } else if (strcmp(argv[1], DELETE_ALL) == 0) {
         printf("Clearing stored pairs\n");
+        deletePairs();
     } else {
         helpScreen();
     }

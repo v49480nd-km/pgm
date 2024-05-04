@@ -7,8 +7,8 @@
 #define HELP "--help"
 #define GEN "--generate"
 #define LIST "--list"
-#define DELETE "--delete-pair"
-#define DELETE_ALL "--delete-pairs"
+#define DELETE "--delete"
+#define DELETE_ALL "--delete-all"
 
 // GENERATING MACROS
 #define ID_LENGTH 4
