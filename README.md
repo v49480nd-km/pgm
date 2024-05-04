@@ -15,6 +15,7 @@ cd pgm
 ## Usage
 ```bash
 pgm --help
+pgm --set-passphrase
 pgm --generate
 pgm --list
 pgm --delete

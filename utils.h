@@ -5,6 +5,7 @@
 
 // CLI MACROS
 #define HELP "--help"
+#define SET "--set-passphrase"
 #define GEN "--generate"
 #define LIST "--list"
 #define DELETE "--delete"
@@ -22,6 +23,7 @@ typedef struct
     char* pwd;
 } Pair;
 
+void reallocString(const char* string);
 void setPassphrase();
 void initPair(Pair* pair);
 void generate(Pair* pair);

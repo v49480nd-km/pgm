@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "utils.h"
 
@@ -12,9 +13,19 @@ int main(int argc, char* argv[])
         exit(0);
     }
 
-    if (strcmp(argv[1], GEN) == 0)
+    if (strcmp(argv[1], SET) == 0)
+    {
+        setPassphrase();
+    }
+    else if (strcmp(argv[1], GEN) == 0)
     {
         Pair pair;
+
+        if (access("passphrase.txt", F_OK) != 0)
+        {
+            printf("Please set Passphrase.\n");
+            exit(0);
+        }
 
         initPair(&pair);
         getId(&pair);
