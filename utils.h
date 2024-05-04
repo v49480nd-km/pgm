@@ -16,17 +16,20 @@
 #define PWD_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
 #define NUM_CHARS sizeof(PWD_CHARS) / sizeof(PWD_CHARS[0]) - 1
 
-typedef struct {
+typedef struct
+{
     char* id;
     char* pwd;
 } Pair;
 
+void setPassphrase();
 void initPair(Pair* pair);
 void generate(Pair* pair);
 void getId(Pair* pair);
 void storePair(Pair* pair);
+void listPairs();
 void encrypt(Pair* pair);
-void dencrypt(const char* passphrase);
+void decrypt(const char* passphrase);
 void deletePair(const char* id);
 void deletePairs();
 void helpScreen();

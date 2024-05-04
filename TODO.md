@@ -2,6 +2,7 @@
 - ~~Generate function~~
 - ~~Store unencrypted~~
 - List pairs
+- Set passphrase
 - Create encryption
 - Create decryption
 - Store encrypted

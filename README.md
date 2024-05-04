@@ -13,11 +13,13 @@ cd pgm
 ```
 
 ## Usage
+```bash
 pgm --help
 pgm --generate
 pgm --list
 pgm --delete
 pgm --delete-all
+```
 
 ## Contributions
 This is not an open source tool for obvious reasons. But I would still like to
