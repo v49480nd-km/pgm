@@ -4,12 +4,12 @@
 #include <stdlib.h>
 
 // CLI MACROS
-#define HELP "--help"
-#define SET "--set-passphrase"
-#define GEN "--generate"
-#define LIST "--list"
-#define DELETE "--delete"
-#define DELETE_ALL "--delete-all"
+#define HELP "-h"
+#define SET "-s"
+#define GEN "-g"
+#define LIST "-l"
+#define DELETE "-d"
+#define DELETE_ALL "-D"
 
 // GENERATING MACROS
 #define ID_LEN 2

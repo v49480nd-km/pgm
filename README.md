@@ -14,12 +14,12 @@ cd pgm
 
 ## Usage
 ```bash
-pgm --help
-pgm --set-passphrase
-pgm --generate
-pgm --list
-pgm --delete
-pgm --delete-all
+pgm -h # commands
+pgm -s # set passphrase
+pgm -g # generate pair
+pgm -l # list pairs
+pgm -d # delete a pair
+pgm -D # delete all pairs
 ```
 
 ## Contributions

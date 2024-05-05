@@ -1,7 +1,7 @@
 - ~~CLI~~
 - ~~Generate function~~
 - ~~Store unencrypted~~
-- List pairs
+- ~~List pairs~~
 - ~~Set passphrase~~
 - Create encryption
 - Create decryption
