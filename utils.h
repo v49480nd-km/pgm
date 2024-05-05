@@ -12,8 +12,10 @@
 #define DELETE_ALL "--delete-all"
 
 // GENERATING MACROS
-#define ID_LENGTH 4
-#define PWD_LENGTH 20
+#define ID_LEN 2
+#define PWD_LEN 20
+#define PHRASE_LEN 30
+#define STORAGE_LEN 23
 #define PWD_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
 #define NUM_CHARS sizeof(PWD_CHARS) / sizeof(PWD_CHARS[0]) - 1
 
@@ -23,8 +25,8 @@ typedef struct
     char* pwd;
 } Pair;
 
-void reallocString(const char* string);
 void setPassphrase();
+int checkPassphrase();
 void initPair(Pair* pair);
 void generate(Pair* pair);
 void getId(Pair* pair);

@@ -5,31 +5,10 @@
 
 #include "utils.h"
 
-void reallocString(const char* string)
-{
-    char* temp = string;
-    int i = 0;
-
-    while (string[i] != NULL)
-    {
-        i++;
-    }
-
-    string = (char*)realloc(string, i);
-
-    if (string == NULL)
-    {
-        printf("Error setting passphrase, try again later.\n");
-        string = temp;
-    }
-
-    printf("newsize: %d\n", (sizeof(string) / sizeof(string[0])));
-}
-
 void setPassphrase()
 {
     FILE* fp;
-    char* user_string = (char*)malloc(30 * sizeof(char));
+    char* user_string = (char*)malloc(PHRASE_LEN * sizeof(char));
 
     if (access("passphrase.txt", F_OK) == 0)
     {
@@ -39,8 +18,6 @@ void setPassphrase()
 
     printf("Input passphrase LESS THAN 30 characters.\n");
     scanf("%s", user_string);
-    printf("oldsize: %d\n", (sizeof(user_string) / sizeof(user_string[0])));
-    reallocString(user_string);
 
     fp = fopen("passphrase.txt", "w");
 
@@ -50,15 +27,46 @@ void setPassphrase()
         exit(0);
     }
 
-    fprintf(fp, "%s\n", user_string);
+    fprintf(fp, "%s", user_string);
     fclose(fp);
     free(user_string);
 }
 
+int checkPassphrase()
+{
+    FILE* fp;
+    char* user_guess = (char*)malloc(PHRASE_LEN * sizeof(char));
+    char* passphrase = (char*)malloc(PHRASE_LEN * sizeof(char));
+
+    printf("Input passphrase: ");
+    scanf("%s", user_guess);
+
+    fp = fopen("passphrase.txt", "r");
+
+    if (fp == NULL)
+    {
+        printf("Could not verify passphrase, please try again.\n");
+        exit(0);
+    }
+
+    fgets(passphrase, PHRASE_LEN, fp);
+
+    if (strcmp(user_guess, passphrase) == 0)
+    {
+        return 1;
+    }
+
+    fclose(fp);
+    free(user_guess);
+    free(passphrase);
+
+    return 0;
+}
+
 void initPair(Pair* newPair)
 {
-    newPair->id = (char*)malloc(ID_LENGTH * sizeof(char));
-    newPair->pwd = (char*)malloc(PWD_LENGTH * sizeof(char));
+    newPair->id = (char*)malloc(ID_LEN * sizeof(char));
+    newPair->pwd = (char*)malloc(PWD_LEN * sizeof(char));
 }
 
 void generate(Pair* pair)
@@ -67,7 +75,7 @@ void generate(Pair* pair)
 
     srand(time(NULL));
 
-    for (int i = 0; i < PWD_LENGTH; i++)
+    for (int i = 0; i < PWD_LEN; i++)
     {
         rand_int = rand() % NUM_CHARS + 1;
         pair->pwd[i] = PWD_CHARS[rand_int];
@@ -79,9 +87,9 @@ void getId(Pair* pair)
     char c;
     int i = 0;
 
-    printf("Input a 4 letter id name Ex: ytbe\n");
+    printf("Input a 2 letter id name Ex: ytbe\n");
 
-    while (i < 4)
+    while (i < ID_LEN)
     {
         c = getchar();
         pair->id[i] = c;
@@ -101,10 +109,36 @@ void storePair(Pair* pair)
         exit(0);
     }
 
-    fprintf(fp, "%s. %s\n", pair->id, pair->pwd);
+    fprintf(fp, "%s:%s\n", pair->id, pair->pwd);
     fclose(fp);
     free(pair->id);
     free(pair->pwd);
+}
+
+void listPairs()
+{
+    FILE* fp;
+    char* pair = (char*)malloc(STORAGE_LEN * sizeof(char));
+    int key = checkPassphrase();
+
+    if (key == 1)
+    {
+        fp = fopen("hidden.txt", "r");
+
+        printf("Listing...\n");
+
+        while (fgets(pair, STORAGE_LEN, fp))
+        {
+            printf("%s", pair);
+        }
+
+        fclose(fp);
+        free(pair);
+        exit(0);
+    }
+
+    printf("Incorrect passphrase.\n");
+    free(pair);
 }
 
 void deletePairs()
