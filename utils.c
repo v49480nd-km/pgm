@@ -28,6 +28,7 @@ void setPassphrase()
     }
 
     fprintf(fp, "%s", user_string);
+    printf("Passphrase stored, DO NOT FORGET!!!\n");
     fclose(fp);
     free(user_string);
 }
@@ -143,7 +144,7 @@ void listPairs()
 
 void deletePairs()
 {
-    if ((remove("hidden.txt") != 0) || (remove("passphrase.txt") != 0))
+    if ((remove("hidden.txt") != 0))
     {
         printf("Unable to delete, please try again.\n");
         exit(0);
