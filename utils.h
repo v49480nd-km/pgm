@@ -17,7 +17,7 @@
 #define PHRASE_LEN 30
 #define STORAGE_LEN 23
 #define PWD_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
-#define NUM_CHARS sizeof(PWD_CHARS) / sizeof(PWD_CHARS[0]) - 1
+#define NUM_CHARS (int)(sizeof(PWD_CHARS) / sizeof(PWD_CHARS[0]) - 1)
 
 typedef struct
 {

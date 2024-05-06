@@ -79,7 +79,7 @@ void generate(Pair* pair)
 
     for (int i = 0; i < PWD_LEN; i++)
     {
-        rand_int = rand() % NUM_CHARS + 1;
+        rand_int = rand() % NUM_CHARS;
         pair->pwd[i] = PWD_CHARS[rand_int];
     }
 }
