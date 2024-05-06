@@ -25,18 +25,18 @@ typedef struct
     char* pwd;
 } Pair;
 
-void setPassphrase();
-int checkPassphrase();
+void setPassphrase(void);
+int checkPassphrase(void);
 void initPair(Pair* pair);
 void generate(Pair* pair);
 void getId(Pair* pair);
 void storePair(Pair* pair);
-void listPairs();
+void listPairs(void);
 void encrypt(Pair* pair);
 void decrypt(const char* passphrase);
 int searchId(FILE* file, const char* id);
-void deletePair();
-void deletePairs();
-void helpScreen();
+void deletePair(void);
+void deletePairs(void);
+void helpScreen(void);
 
 #endif

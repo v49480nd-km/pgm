@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include <unistd.h>
 
 #include "utils.h"
 
-void setPassphrase()
+void setPassphrase(void)
 {
     FILE* fp;
     char* user_string = (char*)malloc(PHRASE_LEN * sizeof(char));
@@ -33,7 +34,7 @@ void setPassphrase()
     free(user_string);
 }
 
-int checkPassphrase()
+int checkPassphrase(void)
 {
     FILE* fp;
     char* user_guess = (char*)malloc(PHRASE_LEN * sizeof(char));
@@ -116,7 +117,7 @@ void storePair(Pair* pair)
     free(pair->pwd);
 }
 
-void listPairs()
+void listPairs(void)
 {
     FILE* fp;
     char* pair = (char*)malloc(STORAGE_LEN * sizeof(char));
@@ -150,11 +151,11 @@ int searchId(FILE* file, const char* id)
 {
     char* current_id = (char*)malloc(ID_LEN * sizeof(char));
     char* current_line = (char*)malloc(STORAGE_LEN * sizeof(char));
-    int line_count = 1;
+    int line_count = 0;
 
     while (fgets(current_line, STORAGE_LEN, file) != NULL)
     {
-        printf("Current line count: %d\n", line_count);
+        line_count++;
 
         for (int i = 0; i < ID_LEN; i++)
         {
@@ -169,22 +170,15 @@ int searchId(FILE* file, const char* id)
             return line_count;
             break;
         }
-
-        line_count++;
     }
 
+    free(current_id);
+    free(current_line);
 
-    if (strcmp(id, current_id) != 0)
-    {
-        free(current_id);
-        free(current_line);
-
-        return 0;
-    }
-
+    return 0;
 }
 
-void deletePair()
+void deletePair(void)
 {
     FILE* fp;
     char* id = (char*)malloc(ID_LEN * sizeof(char));
@@ -203,7 +197,7 @@ void deletePair()
     free(id);
 }
 
-void deletePairs()
+void deletePairs(void)
 {
     if ((remove("hidden.txt") != 0))
     {
@@ -214,7 +208,7 @@ void deletePairs()
     printf("Pairs deleted.\n");
 }
 
-void helpScreen()
+void helpScreen(void)
 {
     printf
     (
