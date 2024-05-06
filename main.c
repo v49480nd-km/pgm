@@ -39,6 +39,7 @@ int main(int argc, char* argv[])
     else if (strcmp(argv[1], DELETE) == 0)
     {
         printf("Deleting pair\n");
+        deletePair();
     }
     else if (strcmp(argv[1], DELETE_ALL) == 0)
     {

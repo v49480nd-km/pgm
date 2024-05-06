@@ -142,6 +142,67 @@ void listPairs()
     free(pair);
 }
 
+/*
+ * ABLE TO FIND PAIR BUT IS OUTPUTTING LINES HIGHER THAN LINE COUNT
+ * IN FILE SO FIGURE THAT OUT I GUESS
+ */
+int searchId(FILE* file, const char* id)
+{
+    char* current_id = (char*)malloc(ID_LEN * sizeof(char));
+    char* current_line = (char*)malloc(STORAGE_LEN * sizeof(char));
+    int line_count = 1;
+
+    while (fgets(current_line, STORAGE_LEN, file) != NULL)
+    {
+        printf("Current line count: %d\n", line_count);
+
+        for (int i = 0; i < ID_LEN; i++)
+        {
+            current_id[i] = current_line[i];
+        }
+
+        if (strcmp(id, current_id) == 0)
+        {
+            free(current_id);
+            free(current_line);
+
+            return line_count;
+            break;
+        }
+
+        line_count++;
+    }
+
+
+    if (strcmp(id, current_id) != 0)
+    {
+        free(current_id);
+        free(current_line);
+
+        return 0;
+    }
+
+}
+
+void deletePair()
+{
+    FILE* fp;
+    char* id = (char*)malloc(ID_LEN * sizeof(char));
+    int pwd_line;
+
+    printf("Input id to delete: ");
+    scanf("%s", id);
+
+    fp = fopen("hidden.txt", "r");
+
+    pwd_line = searchId(fp, id);
+
+    printf("Line num: %d", pwd_line);
+
+    fclose(fp);
+    free(id);
+}
+
 void deletePairs()
 {
     if ((remove("hidden.txt") != 0))
@@ -157,10 +218,10 @@ void helpScreen()
 {
     printf
     (
-        "--help       show commands\n"
-        "--generate   generate and store password\n"
-        "--list       list all pairs\n"
-        "--delete     delete pair by id\n"
-        "--delete-all remove all pairs\n"
+        "-h -> show commands\n"
+        "-g -> generate and store password\n"
+        "-l -> list all pairs\n"
+        "-d -> delete pair by id\n"
+        "-D -> remove all pairs\n"
     );
 }

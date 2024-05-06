@@ -34,7 +34,8 @@ void storePair(Pair* pair);
 void listPairs();
 void encrypt(Pair* pair);
 void decrypt(const char* passphrase);
-void deletePair(const char* id);
+int searchId(FILE* file, const char* id);
+void deletePair();
 void deletePairs();
 void helpScreen();
 
