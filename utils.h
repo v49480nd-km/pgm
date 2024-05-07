@@ -26,15 +26,15 @@ typedef struct
 } Pair;
 
 void setPassphrase(void);
-int checkPassphrase(void);
+int checkPassphrase(void); // return true or false
 void initPair(Pair* pair);
 void genPwd(Pair* pair);
-void getDesc(Pair* pair);
+void getDesc(Pair* pair); // formerly id sorry for confusion
 void storePair(Pair* pair);
 void listPairs(void);
 void encrypt(Pair* pair);
 void decrypt(const char* passphrase);
-int searchId(FILE* file, const char* id);
+int searchId(FILE* file, const char* id); // return line number
 void deletePair(void);
 void deletePairs(void);
 void helpScreen(void);

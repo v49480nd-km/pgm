@@ -19,13 +19,13 @@ int main(int argc, char* argv[])
     }
     else if (strcmp(argv[1], GEN) == 0)
     {
-        if (access("passphrase.txt", F_OK) != 0)
+        if (access("passphrase.txt", F_OK) != 0) // rename file once  done
         {
             printf("Please set Passphrase.\n");
             exit(0);
         }
 
-        Pair pair;
+        Pair pair; // 28 - 33 try to make less lines if possible later down the line
 
         initPair(&pair);
         getDesc(&pair);

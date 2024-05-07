@@ -12,7 +12,7 @@ void setPassphrase(void)
     FILE* fp;
     char* user_string = (char*)malloc(PHRASE_LEN * sizeof(char));
 
-    if (access("passphrase.txt", F_OK) == 0)
+    if (access("passphrase.txt", F_OK) == 0) // rename once pgm complete
     {
         printf("Passphrase already set.\n");
         exit(0);
@@ -21,7 +21,7 @@ void setPassphrase(void)
     printf("Input passphrase LESS THAN 30 characters.\n");
     scanf("%s", user_string);
 
-    fp = fopen("passphrase.txt", "w");
+    fp = fopen("passphrase.txt", "w"); // rename that file when pgm is done
 
     if (fp == NULL)
     {
@@ -44,7 +44,7 @@ int checkPassphrase(void)
     printf("Input passphrase: ");
     scanf("%s", user_guess);
 
-    fp = fopen("passphrase.txt", "r");
+    fp = fopen("passphrase.txt", "r"); // rename
 
     if (fp == NULL)
     {
@@ -93,13 +93,15 @@ void getDesc(Pair* pair)
     {
         pair->desc[i] = getchar();
     }
+
+    fflush(stdin); // being safe
 }
 
 void storePair(Pair* pair)
 {
     FILE* fp;
 
-    fp = fopen("hidden.txt", "a");
+    fp = fopen("hidden.txt", "a"); // rename file once pgm is "complete"
 
     if (fp == NULL)
     {
@@ -121,7 +123,7 @@ void listPairs(void)
 
     if (key == 1)
     {
-        fp = fopen("hidden.txt", "r");
+        fp = fopen("hidden.txt", "r"); // rename once done
 
         printf("Listing...\n");
 
@@ -139,12 +141,6 @@ void listPairs(void)
     free(pair);
 }
 
-/* ALRIGHT, go back to old id system
- * read the chars and have a counter
- * if char doesnt equal : and is less than 4
- * add to current id else continue
- * if current char is equal to newline reset counter
- * repeat */
 int searchId(FILE* file, const char* id)
 {
     int char_count = 0;
@@ -156,7 +152,7 @@ int searchId(FILE* file, const char* id)
     {
         char_count++;
 
-        if (char_count <= 4)
+        if (char_count <= DESC_LEN)
         {
             cur_id[char_count - 1] = cur_char;
         }
@@ -195,7 +191,9 @@ void deletePair(void)
         id[i] = getchar();
     }
 
-    fp = fopen("hidden.txt", "rt");
+    fflush(stdin); // being safe
+
+    fp = fopen("hidden.txt", "rt"); // rename once done
 
     if (fp == NULL)
     {
@@ -213,7 +211,7 @@ void deletePair(void)
 
 void deletePairs(void)
 {
-    if ((remove("hidden.txt") != 0))
+    if ((remove("hidden.txt") != 0)) // rename file once pgm complete
     {
         printf("Unable to delete, please try again.\n");
         exit(0);
