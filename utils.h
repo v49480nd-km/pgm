@@ -12,24 +12,24 @@
 #define DELETE_ALL "-D"
 
 // GENERATING MACROS
-#define ID_LEN 2
+#define DESC_LEN 4
 #define PWD_LEN 20
 #define PHRASE_LEN 30
-#define STORAGE_LEN 23
+#define STORAGE_LEN 25
 #define PWD_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
 #define NUM_CHARS (int)(sizeof(PWD_CHARS) / sizeof(PWD_CHARS[0]) - 1)
 
 typedef struct
 {
-    char* id;
     char* pwd;
+    char* desc; // e.g. youtube
 } Pair;
 
 void setPassphrase(void);
 int checkPassphrase(void);
 void initPair(Pair* pair);
-void generate(Pair* pair);
-void getId(Pair* pair);
+void genPwd(Pair* pair);
+void getDesc(Pair* pair);
 void storePair(Pair* pair);
 void listPairs(void);
 void encrypt(Pair* pair);

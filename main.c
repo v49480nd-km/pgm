@@ -19,17 +19,17 @@ int main(int argc, char* argv[])
     }
     else if (strcmp(argv[1], GEN) == 0)
     {
-        Pair pair;
-
         if (access("passphrase.txt", F_OK) != 0)
         {
             printf("Please set Passphrase.\n");
             exit(0);
         }
 
+        Pair pair;
+
         initPair(&pair);
-        getId(&pair);
-        generate(&pair);
+        getDesc(&pair);
+        genPwd(&pair);
         storePair(&pair);
     }
     else if (strcmp(argv[1], LIST) == 0)

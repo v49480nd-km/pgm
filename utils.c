@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include <wctype.h>
 
 #include "utils.h"
 
@@ -67,11 +68,11 @@ int checkPassphrase(void)
 
 void initPair(Pair* newPair)
 {
-    newPair->id = (char*)malloc(ID_LEN * sizeof(char));
     newPair->pwd = (char*)malloc(PWD_LEN * sizeof(char));
+    newPair->desc = (char*)malloc(DESC_LEN * sizeof(char));
 }
 
-void generate(Pair* pair)
+void genPwd(Pair* pair)
 {
     int rand_int;
 
@@ -84,18 +85,13 @@ void generate(Pair* pair)
     }
 }
 
-void getId(Pair* pair)
+void getDesc(Pair* pair)
 {
-    char c;
-    int i = 0;
+    printf("Input a description less than 20 characters. EX: youtube\n");
 
-    printf("Input a 2 letter id name Ex: ytbe\n");
-
-    while (i < ID_LEN)
+    for (int i = 0; i < DESC_LEN; i++)
     {
-        c = getchar();
-        pair->id[i] = c;
-        i++;
+        pair->desc[i] = getchar();
     }
 }
 
@@ -111,9 +107,9 @@ void storePair(Pair* pair)
         exit(0);
     }
 
-    fprintf(fp, "%s:%s\n", pair->id, pair->pwd);
+    fprintf(fp, "%s:%s\n", pair->desc, pair->pwd);
     fclose(fp);
-    free(pair->id);
+    free(pair->desc);
     free(pair->pwd);
 }
 
@@ -143,37 +139,45 @@ void listPairs(void)
     free(pair);
 }
 
-/*
- * ABLE TO FIND PAIR BUT IS OUTPUTTING LINES HIGHER THAN LINE COUNT
- * IN FILE SO FIGURE THAT OUT I GUESS
- */
+/* ALRIGHT, go back to old id system
+ * read the chars and have a counter
+ * if char doesnt equal : and is less than 4
+ * add to current id else continue
+ * if current char is equal to newline reset counter
+ * repeat */
 int searchId(FILE* file, const char* id)
 {
-    char* current_id = (char*)malloc(ID_LEN * sizeof(char));
-    char* current_line = (char*)malloc(STORAGE_LEN * sizeof(char));
-    int line_count = 0;
+    int char_count = 0;
+    int line_count = 1;
+    char cur_char;
+    char* cur_id = (char*)malloc(DESC_LEN * sizeof(char));
 
-    while (fgets(current_line, STORAGE_LEN, file) != NULL)
+    while ((cur_char = fgetc(file)) != EOF)
     {
-        line_count++;
+        char_count++;
 
-        for (int i = 0; i < ID_LEN; i++)
+        if (char_count <= 4)
         {
-            current_id[i] = current_line[i];
+            cur_id[char_count - 1] = cur_char;
         }
 
-        if (strcmp(id, current_id) == 0)
+        if (cur_char == '\n')
         {
-            free(current_id);
-            free(current_line);
+            char_count = 0;
+            line_count++;
+        }
 
+        if (strcmp(cur_id, id) == 0)
+        {
+            free(cur_id);
+            
             return line_count;
             break;
         }
+
     }
 
-    free(current_id);
-    free(current_line);
+    free(cur_id);
 
     return 0;
 }
@@ -181,17 +185,27 @@ int searchId(FILE* file, const char* id)
 void deletePair(void)
 {
     FILE* fp;
-    char* id = (char*)malloc(ID_LEN * sizeof(char));
+    char* id = (char*)malloc(DESC_LEN * sizeof(char));
     int pwd_line;
 
     printf("Input id to delete: ");
-    scanf("%s", id);
 
-    fp = fopen("hidden.txt", "r");
+    for (int i = 0; i < DESC_LEN; i++)
+    {
+        id[i] = getchar();
+    }
+
+    fp = fopen("hidden.txt", "rt");
+
+    if (fp == NULL)
+    {
+        printf("Could not delete pair.\n");
+        exit(0);
+    }
 
     pwd_line = searchId(fp, id);
 
-    printf("Line num: %d", pwd_line);
+    printf("%d\n", pwd_line);
 
     fclose(fp);
     free(id);
