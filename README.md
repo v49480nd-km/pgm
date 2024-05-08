@@ -6,6 +6,8 @@ They are stored encrypted in a format similar to
 > ytbe - areallystrongpasswordyoucouldntguessbecauseyouarentsmartenoughtolol
 
 ## Installation
+**NOTICE: IT IS NOT FINISHED**
+
 ```bash
 git clone <link>
 cd pgm
@@ -23,7 +25,7 @@ pgm -D # delete all pairs
 ```
 
 ## Contributions
-This is not an open source tool for obvious reasons. But I would still like to
-accept contributions. If you would like to work on this project. Please contact
-me through PGP encryption only. I will not accept any other forms of messaging.
-I do not care what you contact me on. As long as it is encrypted I am happy :)
+PGM is now open source, I am going to hide encryption through obfiscation though
+but if you wish to contribute, please pm me or whatever and we can get to chatting.
+No guarantees. If you send a pull request and we have not talked and I agreed
+for you to contribute. IT WILL BE REJECTED!
