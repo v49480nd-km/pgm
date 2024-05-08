@@ -85,13 +85,13 @@ void genPwd(Pair* pair)
     }
 }
 
-void getDesc(Pair* pair)
+void getDesc(char* desc)
 {
-    printf("Input a description less than 20 characters. EX: youtube\n");
+    printf("Input a description less than 4 characters. EX: youtube\n");
 
     for (int i = 0; i < DESC_LEN; i++)
     {
-        pair->desc[i] = getchar();
+        desc[i] = getchar();
     }
 
     fflush(stdin); // being safe
@@ -141,14 +141,25 @@ void listPairs(void)
     free(pair);
 }
 
-int searchId(FILE* file, const char* id)
+int searchId(void)
 {
+    FILE* fp;
     int char_count = 0;
     int line_count = 1;
-    char cur_char;
+    char* desired = (char*)malloc(DESC_LEN * sizeof(char));
     char* cur_id = (char*)malloc(DESC_LEN * sizeof(char));
 
-    while ((cur_char = fgetc(file)) != EOF)
+    getDesc(desired);
+
+    fp = fopen("hidden.txt", "rt"); // rename once done
+
+    if (fp == NULL)
+    {
+        printf("Could not delete pair.\n");
+        exit(0);
+    }
+
+    while ((char cur_char = fgetc(fp)) != EOF)
     {
         char_count++;
 
@@ -163,9 +174,11 @@ int searchId(FILE* file, const char* id)
             line_count++;
         }
 
-        if (strcmp(cur_id, id) == 0)
+        if (strcmp(cur_id, desired) == 0)
         {
             free(cur_id);
+            free(desired);
+            fclose(fp);
             
             return line_count;
             break;
@@ -174,39 +187,15 @@ int searchId(FILE* file, const char* id)
     }
 
     free(cur_id);
+    free(desired);
+    fclose(fp);
 
     return 0;
 }
 
-void deletePair(void)
+void deletePair(int line_num)
 {
-    FILE* fp;
-    char* id = (char*)malloc(DESC_LEN * sizeof(char));
-    int pwd_line;
-
-    printf("Input id to delete: ");
-
-    for (int i = 0; i < DESC_LEN; i++)
-    {
-        id[i] = getchar();
-    }
-
-    fflush(stdin); // being safe
-
-    fp = fopen("hidden.txt", "rt"); // rename once done
-
-    if (fp == NULL)
-    {
-        printf("Could not delete pair.\n");
-        exit(0);
-    }
-
-    pwd_line = searchId(fp, id);
-
-    printf("%d\n", pwd_line);
-
-    fclose(fp);
-    free(id);
+    printf("%d\n", line_num);
 }
 
 void deletePairs(void)

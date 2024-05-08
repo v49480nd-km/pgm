@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
         Pair pair; // 28 - 33 try to make less lines if possible later down the line
 
         initPair(&pair);
-        getDesc(&pair);
+        getDesc(pair.desc);
         genPwd(&pair);
         storePair(&pair);
     }
@@ -38,8 +38,13 @@ int main(int argc, char* argv[])
     }
     else if (strcmp(argv[1], DELETE) == 0)
     {
+        int pair_line;
+
         printf("Deleting pair\n");
-        deletePair();
+
+        pair_line = searchId();
+
+        deletePair(pair_line);
     }
     else if (strcmp(argv[1], DELETE_ALL) == 0)
     {
