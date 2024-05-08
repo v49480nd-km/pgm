@@ -144,8 +144,10 @@ void listPairs(void)
 int searchId(void)
 {
     FILE* fp;
+    int id_line = 0;
     int char_count = 0;
     int line_count = 1;
+    char cur_char;
     char* desired = (char*)malloc(DESC_LEN * sizeof(char));
     char* cur_id = (char*)malloc(DESC_LEN * sizeof(char));
 
@@ -159,7 +161,7 @@ int searchId(void)
         exit(0);
     }
 
-    while ((char cur_char = fgetc(fp)) != EOF)
+    while ((cur_char = fgetc(fp)) != EOF)
     {
         char_count++;
 
@@ -176,11 +178,7 @@ int searchId(void)
 
         if (strcmp(cur_id, desired) == 0)
         {
-            free(cur_id);
-            free(desired);
-            fclose(fp);
-            
-            return line_count;
+            id_line = line_count;
             break;
         }
 
@@ -190,12 +188,47 @@ int searchId(void)
     free(desired);
     fclose(fp);
 
-    return 0;
+    return id_line;
 }
 
 void deletePair(int line_num)
 {
-    printf("%d\n", line_num);
+    FILE *read, *write;
+    char* cur_line = (char*)malloc(STORAGE_LEN + 1 * sizeof(char));
+    int line_count = 1;
+
+    read = fopen("hidden.txt", "rt");
+    write = fopen("temp.txt", "a");
+
+    if ((read == NULL) || (write == NULL))
+    {
+        printf("Can't delete pair.\n");
+        exit(0);
+    }
+
+    while(fgets(cur_line, STORAGE_LEN + 1, read))
+    {
+        if (line_count == line_num)
+        {
+            line_count++;
+            continue;
+        }
+
+        fprintf(write, "%s", cur_line);
+        line_count++;
+    }
+
+    fclose(read);
+    fclose(write);
+
+    if (remove("hidden.txt") != 0)
+    {
+        remove("temp.txt");
+        printf("Error deleting pair.\n");
+        exit(0);
+    }
+    
+    rename("temp.txt", "hidden.txt");
 }
 
 void deletePairs(void)
