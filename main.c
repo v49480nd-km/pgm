@@ -38,13 +38,11 @@ int main(int argc, char* argv[])
     }
     else if (strcmp(argv[1], DELETE) == 0)
     {
-        int pair_line;
+        DeletePair nums = { 0, 0 };
 
-        printf("Deleting pair\n");
-
-        pair_line = searchId();
-
-        deletePair(pair_line);
+        getFileLines(&nums);
+        searchId(&nums);
+        deletePair(&nums);
     }
     else if (strcmp(argv[1], DELETE_ALL) == 0)
     {

@@ -54,10 +54,7 @@ int checkPassphrase(void)
 
     fgets(passphrase, PHRASE_LEN, fp);
 
-    if (strcmp(user_guess, passphrase) == 0)
-    {
-        return 1;
-    }
+    if (strcmp(user_guess, passphrase) == 0) return 1;
 
     fclose(fp);
     free(user_guess);
@@ -141,10 +138,9 @@ void listPairs(void)
     free(pair);
 }
 
-int searchId(void)
+void searchId(DeletePair* nums)
 {
     FILE* fp;
-    int id_line = 0;
     int char_count = 0;
     int line_count = 1;
     char cur_char;
@@ -165,10 +161,7 @@ int searchId(void)
     {
         char_count++;
 
-        if (char_count <= DESC_LEN)
-        {
-            cur_id[char_count - 1] = cur_char;
-        }
+        if (char_count <= DESC_LEN) cur_id[char_count - 1] = cur_char;
 
         if (cur_char == '\n')
         {
@@ -178,7 +171,7 @@ int searchId(void)
 
         if (strcmp(cur_id, desired) == 0)
         {
-            id_line = line_count;
+            nums->l2d = line_count;
             break;
         }
 
@@ -187,18 +180,40 @@ int searchId(void)
     free(cur_id);
     free(desired);
     fclose(fp);
-
-    return id_line;
 }
 
-void deletePair(int line_num)
+void getFileLines(DeletePair* nums)
+{
+    FILE* fp;
+    int line_count = 1;
+    char c;
+
+    fp = fopen("hidden.txt", "r");
+
+    if (fp == NULL)
+    {
+        printf("Error\n");
+        exit(0);
+    }
+
+    while((c = fgetc(fp)) != EOF)
+    {
+        if (c == '\n') line_count++;
+    }
+
+    nums->total_line = line_count;
+
+    fclose(fp);
+}
+
+void deletePair(DeletePair* nums)
 {
     FILE *read, *write;
     char* cur_line = (char*)malloc(STORAGE_LEN + 1 * sizeof(char));
-    int line_count = 1;
+    int lc = 1;
 
-    read = fopen("hidden.txt", "rt");
-    write = fopen("temp.txt", "a");
+    read = fopen("hidden.txt", "r");
+    write = fopen("temp.txt", "w");
 
     if ((read == NULL) || (write == NULL))
     {
@@ -206,29 +221,25 @@ void deletePair(int line_num)
         exit(0);
     }
 
-    while(fgets(cur_line, STORAGE_LEN + 1, read))
+    while (fscanf(read, "%s", cur_line))
     {
-        if (line_count == line_num)
-        {
-            line_count++;
-            continue;
-        }
+        if (lc == nums->l2d) continue;
 
-        fprintf(write, "%s", cur_line);
-        line_count++;
+        fprintf(write, "%s\n", cur_line);
+        lc++;
     }
 
     fclose(read);
     fclose(write);
 
-    if (remove("hidden.txt") != 0)
+    /* if (remove("hidden.txt") != 0)
     {
         remove("temp.txt");
         printf("Error deleting pair.\n");
         exit(0);
     }
     
-    rename("temp.txt", "hidden.txt");
+    rename("temp.txt", "hidden.txt"); */
 }
 
 void deletePairs(void)

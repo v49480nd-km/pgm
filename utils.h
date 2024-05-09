@@ -25,6 +25,12 @@ typedef struct
     char* desc; // e.g. youtube
 } Pair;
 
+typedef struct
+{
+    int total_line;
+    int l2d;  // line to delete
+} DeletePair;
+
 void setPassphrase(void);
 int checkPassphrase(void); // return true or false
 void initPair(Pair* pair);
@@ -34,8 +40,9 @@ void storePair(Pair* pair);
 void listPairs(void);
 void encrypt(Pair* pair);
 void decrypt(const char* passphrase);
-int searchId(void); // return line number
-void deletePair(int line_num);
+void searchId(DeletePair* nums);
+void getFileLines(DeletePair* nums);
+void deletePair(DeletePair* nums);
 void deletePairs(void);
 void helpScreen(void);
 
