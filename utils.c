@@ -54,7 +54,8 @@ int checkPassphrase(void)
 
     fgets(passphrase, PHRASE_LEN, fp);
 
-    if (strcmp(user_guess, passphrase) == 0) return 1;
+    if (strcmp(user_guess, passphrase) == 0)
+        return 1;
 
     fclose(fp);
     free(user_guess);
@@ -161,7 +162,8 @@ void searchId(DeletePair* nums)
     {
         char_count++;
 
-        if (char_count <= DESC_LEN) cur_id[char_count - 1] = cur_char;
+        if (char_count <= DESC_LEN)
+            cur_id[char_count - 1] = cur_char;
 
         if (cur_char == '\n')
         {
@@ -198,7 +200,8 @@ void getFileLines(DeletePair* nums)
 
     while((c = fgetc(fp)) != EOF)
     {
-        if (c == '\n') line_count++;
+        if (c == '\n')
+            line_count++;
     }
 
     nums->total_line = line_count;
@@ -209,7 +212,7 @@ void getFileLines(DeletePair* nums)
 void deletePair(DeletePair* nums)
 {
     FILE *read, *write;
-    char* cur_line = (char*)malloc(STORAGE_LEN + 1 * sizeof(char));
+    char cur = 'f';
     int lc = 1;
 
     read = fopen("hidden.txt", "r");
@@ -221,12 +224,13 @@ void deletePair(DeletePair* nums)
         exit(0);
     }
 
-    while (fscanf(read, "%s", cur_line))
+    while (cur != EOF)
     {
-        if (lc == nums->l2d) continue;
+        if (cur == '\n')
+            lc++;
 
-        fprintf(write, "%s\n", cur_line);
-        lc++;
+        if (lc != nums->l2d)
+            fputc(cur, write);
     }
 
     fclose(read);
