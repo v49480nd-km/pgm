@@ -20,12 +20,6 @@
 
 typedef struct
 {
-    int total_line;
-    int l2d;  // line to delete
-} DeletePair;
-
-typedef struct
-{
     char* pwd;
     char* desc; // e.g. youtube
 } Pair;
@@ -43,10 +37,9 @@ void _decrypt(const char* passphrase);
 void listPairs(void);
 // DELETE SECTION
 void _switchFiles(void);
-void getFileLines(DeletePair* nums);
-void deletePair(DeletePair* nums);
+void deletePair(int del_line);
 void deletePairs(void);
-void searchId(DeletePair* nums);
+int searchId(void);
 // HELP
 void helpScreen(void);
 

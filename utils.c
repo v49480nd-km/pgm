@@ -142,7 +142,7 @@ void listPairs(void)
 }
 
 // DELETE SECTION
-void _switchFiles()
+void _switchFiles(void)
 {
     if (remove("hidden.txt") != 0)
     {
@@ -154,34 +154,10 @@ void _switchFiles()
     rename("temp.txt", "hidden.txt");
 }
 
-void getFileLines(DeletePair* nums)
+int searchId(void)
 {
     FILE* fp;
-    int line_count = 1;
-    char c;
-
-    fp = fopen("hidden.txt", "r");
-
-    if (fp == NULL)
-    {
-        printf("Error\n");
-        exit(0);
-    }
-
-    while((c = fgetc(fp)) != EOF)
-    {
-        if (c == '\n')
-            line_count++;
-    }
-
-    nums->total_line = line_count;
-
-    fclose(fp);
-}
-
-void searchId(DeletePair* nums)
-{
-    FILE* fp;
+    int del_line = 0;
     int char_count = 0;
     int line_count = 1;
     char cur_char;
@@ -213,7 +189,7 @@ void searchId(DeletePair* nums)
 
         if (strcmp(cur_id, desired) == 0)
         {
-            nums->l2d = line_count;
+            del_line = line_count;
             break;
         }
 
@@ -222,9 +198,11 @@ void searchId(DeletePair* nums)
     free(cur_id);
     free(desired);
     fclose(fp);
+
+    return del_line;
 }
 
-void deletePair(DeletePair* nums)
+void deletePair(int del_line)
 {
     FILE *read, *write;
     char cur = 'f';
@@ -246,13 +224,13 @@ void deletePair(DeletePair* nums)
         if (cur == '\n')
             lc++;
 
-        if (lc != nums->l2d)
+        if (lc != del_line)
             fputc(cur, write);
     }
 
     fclose(read);
     fclose(write);
-    // _switchFiles();
+    _switchFiles();
 }
 
 void deletePairs(void)

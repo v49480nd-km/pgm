@@ -34,11 +34,9 @@ int main(int argc, char* argv[])
         listPairs();
     else if (strcmp(argv[1], DELETE) == 0)
     {
-        DeletePair nums = { 0, 0 };
+        int line = searchId();
 
-        getFileLines(&nums);
-        searchId(&nums);
-        deletePair(&nums);
+        deletePair(line);
     }
     else if (strcmp(argv[1], DELETE_ALL) == 0)
     {
