@@ -14,9 +14,7 @@ int main(int argc, char* argv[])
     }
 
     if (strcmp(argv[1], SET) == 0)
-    {
         setPassphrase();
-    }
     else if (strcmp(argv[1], GEN) == 0)
     {
         if (access("passphrase.txt", F_OK) != 0) // rename file once  done
@@ -33,9 +31,7 @@ int main(int argc, char* argv[])
         storePair(&pair);
     }
     else if (strcmp(argv[1], LIST) == 0)
-    {
         listPairs();
-    }
     else if (strcmp(argv[1], DELETE) == 0)
     {
         DeletePair nums = { 0, 0 };
@@ -50,9 +46,7 @@ int main(int argc, char* argv[])
         deletePairs();
     }
     else
-    {
         helpScreen();
-    }
 
     return 0;
 }
