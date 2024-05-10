@@ -9,7 +9,7 @@ They are stored encrypted in a format similar to
 **NOTICE: IT IS NOT FINISHED**
 
 ```bash
-git clone https://gitlab.com/v49480nd_km/pgm.git
+git clone https://github.com/v49480nd-km/pgm.git
 cd pgm
 ./build.sh
 ```
