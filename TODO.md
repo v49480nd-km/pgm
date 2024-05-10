@@ -3,6 +3,7 @@
 - ~~Store unencrypted~~
 - ~~List pairs~~
 - ~~Set passphrase~~
+- create key dict
 - Create encryption
 - Create decryption
 - Store encrypted
