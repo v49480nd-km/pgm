@@ -7,5 +7,5 @@
 - Create decryption
 - Store encrypted
 - list pairs with decryption
-- delete pair
+- ~~delete pair~~
 - ~~delete all pairs~~
