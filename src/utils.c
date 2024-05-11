@@ -11,8 +11,8 @@
 int _checkPassphrase(void)
 {
     FILE* fp;
-    char* user_guess = (char*)malloc(PHRASE_LEN * sizeof(char));
     char* passphrase = (char*)malloc(PHRASE_LEN * sizeof(char));
+    char* user_guess = (char*)malloc(PHRASE_LEN * sizeof(char));
 
     printf("Input passphrase: ");
     scanf("%s", user_guess);
@@ -64,8 +64,8 @@ void getDesc(char* desc)
 
 void initPair(Pair* newPair)
 {
-    newPair->pwd = (char*)malloc(PWD_LEN * sizeof(char));
     newPair->desc = (char*)malloc(DESC_LEN * sizeof(char));
+    newPair->pwd = (char*)malloc(PWD_LEN * sizeof(char));
 }
 
 void setPassphrase(void)
@@ -157,12 +157,10 @@ void _switchFiles(void)
 int searchId(void)
 {
     FILE* fp;
-    int del_line = 0;
-    int char_count = 0;
-    int line_count = 1;
-    char cur_char;
-    char* desired = (char*)malloc(DESC_LEN * sizeof(char));
     char* cur_id = (char*)malloc(DESC_LEN * sizeof(char));
+    char* desired = (char*)malloc(DESC_LEN * sizeof(char));
+    char cur_char;
+    int char_count = 0, del_line = 0, line_count = 1;
 
     getDesc(desired);
 

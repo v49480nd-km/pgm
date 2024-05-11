@@ -20,8 +20,8 @@
 
 typedef struct
 {
-    char* pwd;
     char* desc; // e.g. youtube
+    char* pwd;
 } Pair;
 
 // GENERATE SECTION
