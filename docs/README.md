@@ -1,4 +1,5 @@
 # PGM
+![](pgm.png)
 PGM is a Password Generator and Manager tool written in C. The goal in mind is
 to generate password pairs with user given ids up to four characters.
 
