@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 {
     if (argc != 2)
     {
-        printf("Not valid, use pgm --help for commands\n");
+        printf("Not valid, use pgm -h for commands\n");
         exit(0);
     }
 
