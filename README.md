@@ -25,7 +25,4 @@ pgm -D # delete all pairs
 ```
 
 ## Contributions
-PGM is now open source, I am going to hide encryption through obfiscation though
-but if you wish to contribute, please pm me or whatever and we can get to chatting.
-No guarantees. If you send a pull request and we have not talked and I agreed
-for you to contribute. IT WILL BE REJECTED!
+Read CONTRIBUTIONS.md
