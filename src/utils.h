@@ -26,14 +26,12 @@ typedef struct
 
 // GENERATE SECTION
 int _checkPassphrase(void); // return true or false
-void _encrypt(Pair* pair);
 void genPwd(Pair* pair);
 void getDesc(char* desc); // formerly id sorry for confusion
 void initPair(Pair* pair);
 void setPassphrase(void);
 void storePair(Pair* pair);
 // LIST SECTION
-void _decrypt(const char* passphrase);
 void listPairs(void);
 // DELETE SECTION
 void _switchFiles(void);
