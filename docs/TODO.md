@@ -3,6 +3,7 @@
 - ~~Store unencrypted~~
 - ~~List pairs~~
 - ~~Set passphrase~~
+- HASHMAP??
 - create key dict
 - Create encryption
 - Create decryption
