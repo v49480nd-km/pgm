@@ -141,19 +141,6 @@ listPairs(void)
 }
 
 /* DELETE SECT */
-static void
-_switchFiles(void)
-{
-    if (remove("hidden.txt") != 0)
-    {
-        remove("temp.txt");
-        printf("Error deleting pair.\n");
-        exit(0);
-    }
-    
-    rename("temp.txt", "hidden.txt");
-}
-
 int
 searchId(void)
 {
@@ -236,6 +223,18 @@ deletePairs(void)
     }
 
     printf("Pairs deleted.\n");
+}
+
+static void
+_switchFiles(void)
+{
+    if (remove("hidden.txt") != 0) {
+        remove("temp.txt");
+        printf("Error deleting pair.\n");
+        exit(0);
+    }
+    
+    rename("temp.txt", "hidden.txt");
 }
 
 // HELP

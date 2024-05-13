@@ -27,8 +27,7 @@ main(int argc, char* argv[])
         getDesc(pair.desc);
         genPwd(&pair);
         storePair(&pair);
-    }
-    else if (strcmp(argv[1], LIST) == 0)
+    } else if (strcmp(argv[1], LIST) == 0)
         listPairs();
     else if (strcmp(argv[1], DELETE) == 0) {
         int line = searchId();
