@@ -7,8 +7,9 @@
 
 #include "utils.h"
 
-// GENERATE SECTION
-int _checkPassphrase(void)
+/* GENERATE SECTION */
+static int
+_checkPassphrase(void)
 {
     FILE* fp;
     char* passphrase = (char*)malloc(PHRASE_LEN * sizeof(char));
@@ -17,10 +18,9 @@ int _checkPassphrase(void)
     printf("Input passphrase: ");
     scanf("%s", user_guess);
 
-    fp = fopen("passphrase.txt", "r"); // rename
+    fp = fopen("passphrase.txt", "r"); /* rename */
 
-    if (fp == NULL)
-    {
+    if (fp == NULL) {
         printf("Could not verify passphrase, please try again.\n");
         exit(0);
     }
@@ -37,44 +37,45 @@ int _checkPassphrase(void)
     return 0;
 }
 
-void genPwd(Pair* pair)
+void
+genPwd(Pair* pair)
 {
     int rand_int;
 
     srand(time(NULL));
 
-    for (int i = 0; i < PWD_LEN; i++)
-    {
+    for (int i = 0; i < PWD_LEN; i++) {
         rand_int = rand() % NUM_CHARS;
         pair->pwd[i] = PWD_CHARS[rand_int];
     }
 }
 
-void getDesc(char* desc)
+void
+getDesc(char* desc)
 {
     printf("Input a description less than 4 characters. EX: youtube\n");
 
-    for (int i = 0; i < DESC_LEN; i++)
-    {
+    for (int i = 0; i < DESC_LEN; i++) {
         desc[i] = getchar();
     }
 
-    fflush(stdin); // being safe
+    fflush(stdin); /* being safe */
 }
 
-void initPair(Pair* newPair)
+void
+initPair(Pair* newPair)
 {
     newPair->desc = (char*)malloc(DESC_LEN * sizeof(char));
     newPair->pwd = (char*)malloc(PWD_LEN * sizeof(char));
 }
 
-void setPassphrase(void)
+void
+setPassphrase(void)
 {
     FILE* fp;
     char* user_string = (char*)malloc(PHRASE_LEN * sizeof(char));
 
-    if (access("passphrase.txt", F_OK) == 0) // rename once pgm complete
-    {
+    if (access("passphrase.txt", F_OK) == 0) { /* rename once pgm complete */
         printf("Passphrase already set.\n");
         exit(0);
     }
@@ -84,8 +85,7 @@ void setPassphrase(void)
 
     fp = fopen("passphrase.txt", "w"); // rename that file when pgm is done
 
-    if (fp == NULL)
-    {
+    if (fp == NULL) {
         printf("Could not generate password. Please try again.\n");
         exit(0);
     }
@@ -100,10 +100,9 @@ void storePair(Pair* pair)
 {
     FILE* fp;
 
-    fp = fopen("hidden.txt", "a"); // rename file once pgm is "complete"
+    fp = fopen("hidden.txt", "a"); /* rename file once pgm is "complete" */
 
-    if (fp == NULL)
-    {
+    if (fp == NULL) {
         printf("Could not open file. Please try again.\n");
         exit(0);
     }
@@ -114,8 +113,9 @@ void storePair(Pair* pair)
     free(pair->pwd);
 }
 
-// LIST SECTION
-void listPairs(void)
+/* LIST SECT */
+void
+listPairs(void)
 {
     FILE* fp;
     char* pair = (char*)malloc(STORAGE_LEN * sizeof(char));
@@ -127,8 +127,7 @@ void listPairs(void)
 
         printf("Listing...\n");
 
-        while (fgets(pair, STORAGE_LEN, fp))
-        {
+        while (fgets(pair, STORAGE_LEN, fp)) {
             printf("%s", pair);
         }
 
@@ -141,8 +140,9 @@ void listPairs(void)
     free(pair);
 }
 
-// DELETE SECTION
-void _switchFiles(void)
+/* DELETE SECT */
+static void
+_switchFiles(void)
 {
     if (remove("hidden.txt") != 0)
     {
@@ -154,7 +154,8 @@ void _switchFiles(void)
     rename("temp.txt", "hidden.txt");
 }
 
-int searchId(void)
+int
+searchId(void)
 {
     FILE* fp;
     char* cur_id = (char*)malloc(DESC_LEN * sizeof(char));
@@ -164,29 +165,25 @@ int searchId(void)
 
     getDesc(desired);
 
-    fp = fopen("hidden.txt", "rt"); // rename once done
+    fp = fopen("hidden.txt", "rt"); /* rename once done */
 
-    if (fp == NULL)
-    {
+    if (fp == NULL) {
         printf("Could not delete pair.\n");
         exit(0);
     }
 
-    while ((cur_char = fgetc(fp)) != EOF)
-    {
+    while ((cur_char = fgetc(fp)) != EOF) {
         char_count++;
 
         if (char_count <= DESC_LEN)
             cur_id[char_count - 1] = cur_char;
 
-        if (cur_char == '\n')
-        {
+        if (cur_char == '\n') {
             char_count = 0;
             line_count++;
         }
 
-        if (strcmp(cur_id, desired) == 0)
-        {
+        if (strcmp(cur_id, desired) == 0) {
             del_line = line_count;
             break;
         }
@@ -200,7 +197,8 @@ int searchId(void)
     return del_line;
 }
 
-void deletePair(int del_line)
+void
+deletePair(int del_line)
 {
     FILE *read, *write;
     char cur = 'f';
@@ -209,14 +207,12 @@ void deletePair(int del_line)
     read = fopen("hidden.txt", "r");
     write = fopen("temp.txt", "w");
 
-    if ((read == NULL) || (write == NULL))
-    {
+    if ((read == NULL) || (write == NULL)) {
         printf("Can't delete pair.\n");
         exit(0);
     }
 
-    while (cur != EOF)
-    {
+    while (cur != EOF) {
         cur = fgetc(read);
 
         if (cur == '\n')
@@ -231,10 +227,10 @@ void deletePair(int del_line)
     _switchFiles();
 }
 
-void deletePairs(void)
+void
+deletePairs(void)
 {
-    if ((remove("hidden.txt") != 0)) // rename file once pgm complete
-    {
+    if ((remove("hidden.txt") != 0)) { /* rename file once pgm complete */
         printf("Unable to delete, please try again.\n");
         exit(0);
     }
@@ -243,10 +239,10 @@ void deletePairs(void)
 }
 
 // HELP
-void helpScreen(void)
+void
+helpScreen(void)
 {
-    printf
-    (
+    printf(
         "-h -> show commands\n"
         "-g -> generate and store password\n"
         "-l -> list all pairs\n"

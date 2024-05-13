@@ -15,10 +15,22 @@ With that being said...
 
 - When contributing just make sure the git messages are understandable. I do not
 care if you joke in them just as long as it informs where you are at in some way.
-- As far as style guide goes, look at the source code is the best I can tell you,
-I dont know if I follow a commonly known one or this is just my own personal wants.
-If you have questions about the style guide please let me know. Im not too picky
-just kind of OCD, would like it all to look the same.
+- For the style guide, please check out [Suckless Coding Style](https://suckless.org/coding_style/)
+The only thing that I add on top of that is, defining variables at beginning of
+code block and by type and alphabetic order. Pointers -> normal types in alphabetical
+order. EX:
+
+```C
+static void
+fooBar(void)
+{
+    char* idk;
+    char* zorgon;
+    char y;
+    double foo, z;
+    int* x;
+}
+```
 - If you find any bugs or issues please let me know so I can make note of it and
 we can go from there.
 - If you wish to make more contributions after you did what you wanted please just
