@@ -3,12 +3,11 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
-#include <wctype.h>
 
 #include "utils.h"
 
 /* GENERATE SECTION */
-static int
+int
 _checkPassphrase(void)
 {
     FILE* fp;
@@ -225,7 +224,7 @@ deletePairs(void)
     printf("Pairs deleted.\n");
 }
 
-static void
+void
 _switchFiles(void)
 {
     if (remove("hidden.txt") != 0) {

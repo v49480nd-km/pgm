@@ -24,6 +24,7 @@ typedef struct {
 } Pair;
 
 /* GENERATE SECTION */
+int _checkPassphrase(void);
 void genPwd(Pair* pair);
 void getDesc(char* desc); /* formerly id sorry for confusion */
 void initPair(Pair* pair);
@@ -35,6 +36,7 @@ void listPairs(void);
 int searchId(void);
 void deletePair(int del_line);
 void deletePairs(void);
+void _switchFiles(void);
 /* HELP SECTION */
 void helpScreen(void);
 
