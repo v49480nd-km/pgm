@@ -12,7 +12,8 @@ They are stored encrypted in a format similar to
 
 ```bash
 git clone https://github.com/v49480nd-km/pgm.git
-cd pgm
+cd pgm/build
+cmake ..
 make
 ```
 
