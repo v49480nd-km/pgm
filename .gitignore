@@ -1,8 +1,4 @@
-obj/*.o
-*.out
-bin/pgm
-*.txt
-
+build/CMakeFiles
 
 # Added by cargo
 
