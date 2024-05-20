@@ -4,9 +4,7 @@
 #include <unistd.h>
 #include "utils.h"
 
-int
-main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
     if (argc != 2) {
         printf("Not valid, use pgm -h for commands\n");
         exit(0);
@@ -14,6 +12,7 @@ main(int argc, char* argv[])
 
     if (strcmp(argv[1], SET) == 0)
         setPassphrase();
+
     else if (strcmp(argv[1], GEN) == 0) {
         if (access("passphrase.txt", F_OK) != 0) { /* rename file once  done */
             printf("Please set Passphrase.\n");
@@ -21,21 +20,26 @@ main(int argc, char* argv[])
         }
 
         Pair pair; /* 28 - 33 try to make less lines if possible later down the line */
-
         initPair(&pair);
         getDesc(pair.desc);
         genPwd(&pair);
         storePair(&pair);
-    } else if (strcmp(argv[1], LIST) == 0)
+    }
+
+    else if (strcmp(argv[1], LIST) == 0)
         listPairs();
+
     else if (strcmp(argv[1], DELETE) == 0) {
         int line = searchId();
-
         deletePair(line);
-    } else if (strcmp(argv[1], DELETE_ALL) == 0) {
+    }
+
+    else if (strcmp(argv[1], DELETE_ALL) == 0) {
         printf("Clearing stored pairs\n");
         deletePairs();
-    } else
+    }
+
+    else
         helpScreen();
 
     return 0;

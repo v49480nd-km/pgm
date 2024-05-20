@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-void
-printHello(void)
-{
+void printHello(void) {
     printf("hello");
 }

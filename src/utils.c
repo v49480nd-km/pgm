@@ -7,16 +7,12 @@
 #include "utils.h"
 
 /* GENERATE SECTION */
-int
-_checkPassphrase(void)
-{
+int _checkPassphrase(void) {
     FILE* fp;
     char* passphrase = (char*)malloc(PHRASE_LEN * sizeof(char));
     char* user_guess = (char*)malloc(PHRASE_LEN * sizeof(char));
-
     printf("Input passphrase: ");
     scanf("%s", user_guess);
-
     fp = fopen("passphrase.txt", "r"); /* rename */
 
     if (fp == NULL) {
@@ -25,22 +21,17 @@ _checkPassphrase(void)
     }
 
     fgets(passphrase, PHRASE_LEN, fp);
-
     if (strcmp(user_guess, passphrase) == 0)
         return 1;
 
     fclose(fp);
     free(user_guess);
     free(passphrase);
-
     return 0;
 }
 
-void
-genPwd(Pair* pair)
-{
+void genPwd(Pair* pair) {
     int rand_int;
-
     srand(time(NULL));
 
     for (int i = 0; i < PWD_LEN; i++) {
@@ -49,28 +40,21 @@ genPwd(Pair* pair)
     }
 }
 
-void
-getDesc(char* desc)
-{
+void getDesc(char* desc) {
     printf("Input a description less than 4 characters. EX: youtube\n");
 
     for (int i = 0; i < DESC_LEN; i++) {
         desc[i] = getchar();
     }
-
     fflush(stdin); /* being safe */
 }
 
-void
-initPair(Pair* newPair)
-{
+void initPair(Pair* newPair) {
     newPair->desc = (char*)malloc(DESC_LEN * sizeof(char));
     newPair->pwd = (char*)malloc(PWD_LEN * sizeof(char));
 }
 
-void
-setPassphrase(void)
-{
+void setPassphrase(void) {
     FILE* fp;
     char* user_string = (char*)malloc(PHRASE_LEN * sizeof(char));
 
@@ -81,9 +65,8 @@ setPassphrase(void)
 
     printf("Input passphrase LESS THAN 30 characters.\n");
     scanf("%s", user_string);
-
     fp = fopen("passphrase.txt", "w"); // rename that file when pgm is done
-
+                                       //
     if (fp == NULL) {
         printf("Could not generate password. Please try again.\n");
         exit(0);
@@ -98,14 +81,11 @@ setPassphrase(void)
 void storePair(Pair* pair)
 {
     FILE* fp;
-
     fp = fopen("hidden.txt", "a"); /* rename file once pgm is "complete" */
-
     if (fp == NULL) {
         printf("Could not open file. Please try again.\n");
         exit(0);
     }
-
     fprintf(fp, "%s:%s\n", pair->desc, pair->pwd);
     fclose(fp);
     free(pair->desc);
@@ -113,9 +93,7 @@ void storePair(Pair* pair)
 }
 
 /* LIST SECT */
-void
-listPairs(void)
-{
+void listPairs(void) {
     FILE* fp;
     char* pair = (char*)malloc(STORAGE_LEN * sizeof(char));
     int key = _checkPassphrase();
@@ -123,7 +101,6 @@ listPairs(void)
     if (key == 1)
     {
         fp = fopen("hidden.txt", "r"); // rename once done
-
         printf("Listing...\n");
 
         while (fgets(pair, STORAGE_LEN, fp)) {
@@ -140,17 +117,13 @@ listPairs(void)
 }
 
 /* DELETE SECT */
-int
-searchId(void)
-{
+int searchId(void) {
     FILE* fp;
     char* cur_id = (char*)malloc(DESC_LEN * sizeof(char));
     char* desired = (char*)malloc(DESC_LEN * sizeof(char));
     char cur_char;
     int char_count = 0, del_line = 0, line_count = 1;
-
     getDesc(desired);
-
     fp = fopen("hidden.txt", "rt"); /* rename once done */
 
     if (fp == NULL) {
@@ -173,23 +146,18 @@ searchId(void)
             del_line = line_count;
             break;
         }
-
     }
 
     free(cur_id);
     free(desired);
     fclose(fp);
-
     return del_line;
 }
 
-void
-deletePair(int del_line)
-{
+void deletePair(int del_line) {
     FILE *read, *write;
     char cur = 'f';
     int lc = 1;
-
     read = fopen("hidden.txt", "r");
     write = fopen("temp.txt", "w");
 
@@ -213,9 +181,7 @@ deletePair(int del_line)
     _switchFiles();
 }
 
-void
-deletePairs(void)
-{
+void deletePairs(void) {
     if ((remove("hidden.txt") != 0)) { /* rename file once pgm complete */
         printf("Unable to delete, please try again.\n");
         exit(0);
@@ -224,22 +190,18 @@ deletePairs(void)
     printf("Pairs deleted.\n");
 }
 
-void
-_switchFiles(void)
-{
+void _switchFiles(void) {
     if (remove("hidden.txt") != 0) {
         remove("temp.txt");
         printf("Error deleting pair.\n");
         exit(0);
     }
-    
+
     rename("temp.txt", "hidden.txt");
 }
 
 // HELP
-void
-helpScreen(void)
-{
+void helpScreen(void) {
     printf(
         "-h -> show commands\n"
         "-g -> generate and store password\n"
