@@ -21,8 +21,9 @@ int _checkPassphrase(void) {
     }
 
     fgets(passphrase, PHRASE_LEN, fp);
-    if (strcmp(user_guess, passphrase) == 0)
+    if (strcmp(user_guess, passphrase) == 0) {
         return 1;
+    }
 
     fclose(fp);
     free(user_guess);
@@ -33,7 +34,6 @@ int _checkPassphrase(void) {
 void genPwd(Pair* pair) {
     int rand_int;
     srand(time(NULL));
-
     for (int i = 0; i < PWD_LEN; i++) {
         rand_int = rand() % NUM_CHARS;
         pair->pwd[i] = PWD_CHARS[rand_int];
@@ -42,7 +42,6 @@ void genPwd(Pair* pair) {
 
 void getDesc(char* desc) {
     printf("Input a description less than 4 characters. EX: youtube\n");
-
     for (int i = 0; i < DESC_LEN; i++) {
         desc[i] = getchar();
     }
@@ -98,20 +97,17 @@ void listPairs(void) {
     char* pair = (char*)malloc(STORAGE_LEN * sizeof(char));
     int key = _checkPassphrase();
 
-    if (key == 1)
-    {
+    if (key == 1) {
         fp = fopen("hidden.txt", "r"); // rename once done
         printf("Listing...\n");
 
         while (fgets(pair, STORAGE_LEN, fp)) {
             printf("%s", pair);
         }
-
         fclose(fp);
         free(pair);
         exit(0);
     }
-
     printf("Incorrect passphrase.\n");
     free(pair);
 }
@@ -134,8 +130,9 @@ int searchId(void) {
     while ((cur_char = fgetc(fp)) != EOF) {
         char_count++;
 
-        if (char_count <= DESC_LEN)
+        if (char_count <= DESC_LEN) {
             cur_id[char_count - 1] = cur_char;
+        }
 
         if (cur_char == '\n') {
             char_count = 0;
@@ -147,7 +144,6 @@ int searchId(void) {
             break;
         }
     }
-
     free(cur_id);
     free(desired);
     fclose(fp);
@@ -165,17 +161,17 @@ void deletePair(int del_line) {
         printf("Can't delete pair.\n");
         exit(0);
     }
-
     while (cur != EOF) {
         cur = fgetc(read);
 
-        if (cur == '\n')
+        if (cur == '\n') {
             lc++;
+        }
 
-        if (lc != del_line)
+        if (lc != del_line) {
             fputc(cur, write);
+        }
     }
-
     fclose(read);
     fclose(write);
     _switchFiles();
@@ -186,7 +182,6 @@ void deletePairs(void) {
         printf("Unable to delete, please try again.\n");
         exit(0);
     }
-
     printf("Pairs deleted.\n");
 }
 
@@ -196,7 +191,6 @@ void _switchFiles(void) {
         printf("Error deleting pair.\n");
         exit(0);
     }
-
     rename("temp.txt", "hidden.txt");
 }
 

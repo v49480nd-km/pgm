@@ -10,10 +10,9 @@ int main(int argc, char* argv[]) {
         exit(0);
     }
 
-    if (strcmp(argv[1], SET) == 0)
+    if (strcmp(argv[1], SET) == 0) {
         setPassphrase();
-
-    else if (strcmp(argv[1], GEN) == 0) {
+    } else if (strcmp(argv[1], GEN) == 0) {
         if (access("passphrase.txt", F_OK) != 0) { /* rename file once  done */
             printf("Please set Passphrase.\n");
             exit(0);
@@ -24,23 +23,17 @@ int main(int argc, char* argv[]) {
         getDesc(pair.desc);
         genPwd(&pair);
         storePair(&pair);
-    }
-
-    else if (strcmp(argv[1], LIST) == 0)
+    } else if (strcmp(argv[1], LIST) == 0) {
         listPairs();
-
-    else if (strcmp(argv[1], DELETE) == 0) {
+    } else if (strcmp(argv[1], DELETE) == 0) {
         int line = searchId();
         deletePair(line);
-    }
-
-    else if (strcmp(argv[1], DELETE_ALL) == 0) {
+    } else if (strcmp(argv[1], DELETE_ALL) == 0) {
         printf("Clearing stored pairs\n");
         deletePairs();
-    }
-
-    else
+    } else {
         helpScreen();
+    }
 
     return 0;
 }
