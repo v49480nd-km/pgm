@@ -31,7 +31,7 @@ int _checkPassphrase(void) {
     return 0;
 }
 
-void genPwd(Pair* pair) {
+void genPwd(Pair *pair) {
     int rand_int;
     srand(time(NULL));
     for (int i = 0; i < PWD_LEN; i++) {
@@ -40,7 +40,7 @@ void genPwd(Pair* pair) {
     }
 }
 
-void getDesc(char* desc) {
+void getDesc(char *desc) {
     printf("Input a description less than 4 characters. EX: youtube\n");
     for (int i = 0; i < DESC_LEN; i++) {
         desc[i] = getchar();
@@ -48,9 +48,10 @@ void getDesc(char* desc) {
     fflush(stdin); /* being safe */
 }
 
-void initPair(Pair* newPair) {
+void initPair(Pair *newPair) {
     newPair->desc = (char*)malloc(DESC_LEN * sizeof(char));
     newPair->pwd = (char*)malloc(PWD_LEN * sizeof(char));
+    newPair->next = NULL;
 }
 
 void setPassphrase(void) {
@@ -77,19 +78,6 @@ void setPassphrase(void) {
     free(user_string);
 }
 
-void storePair(Pair* pair)
-{
-    FILE* fp;
-    fp = fopen("hidden.txt", "a"); /* rename file once pgm is "complete" */
-    if (fp == NULL) {
-        printf("Could not open file. Please try again.\n");
-        exit(0);
-    }
-    fprintf(fp, "%s:%s\n", pair->desc, pair->pwd);
-    fclose(fp);
-    free(pair->desc);
-    free(pair->pwd);
-}
 
 /* LIST SECT */
 void listPairs(void) {
@@ -203,4 +191,29 @@ void helpScreen(void) {
         "-d -> delete pair by id\n"
         "-D -> remove all pairs\n"
     );
+}
+
+/* STORAGE SECTION */
+void hashify(const char *key) {
+    int key = 0;
+    size_t key_len = LENGTH(key);
+
+    for (size_t i = 0; i < key_len; i++) {
+        key += key[i] * key[i];
+    }
+    return key % MAX_LINES;
+}
+
+void storePair(Pair *pair)
+{
+    FILE* fp;
+    fp = fopen("hidden.txt", "a"); /* rename file once pgm is "complete" */
+    if (fp == NULL) {
+        printf("Could not open file. Please try again.\n");
+        exit(0);
+    }
+    fprintf(fp, "%s:%s\n", pair->desc, pair->pwd);
+    fclose(fp);
+    free(pair->desc);
+    free(pair->pwd);
 }

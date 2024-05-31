@@ -17,19 +17,21 @@
 #define PWD_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
 #define PWD_LEN 20
 #define STORAGE_LEN 25
+#define MAX_LINES 100
+#define LENGTH(a) sizeof(a) / sizeof(a[0])
 
-typedef struct {
-    char* desc; /* e.g. youtube */
-    char* pwd;
+typedef struct Pair {
+    char *desc; /* e.g. youtube */
+    char *pwd;
+    struct Pair *next;
 } Pair;
 
 /* GENERATE SECTION */
 int _checkPassphrase(void);
-void genPwd(Pair* pair);
-void getDesc(char* desc); /* formerly id sorry for confusion */
-void initPair(Pair* pair);
+void genPwd(Pair *pair);
+void getDesc(char *desc); /* formerly id sorry for confusion */
+void initPair(Pair *pair);
 void setPassphrase(void);
-void storePair(Pair* pair);
 /* LIST SECTION */
 void listPairs(void);
 /* DELETE SECTION */
@@ -39,5 +41,8 @@ void deletePairs(void);
 void _switchFiles(void);
 /* HELP SECTION */
 void helpScreen(void);
+/* STORAGE SECTION */
+void hashify(const char *key);
+void storePair(Pair *pair);
 
 #endif
