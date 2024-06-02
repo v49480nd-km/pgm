@@ -2,6 +2,9 @@
 #define __UTILS_H__
 
 #include <stdint.h>
+#include <stdlib.h>
+
+#define CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
 
 // COMMANDS
 #define DELETE "-d"

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "utils.h"
 
@@ -12,6 +13,18 @@ uint8_t checkGlobalPass() {
     }
     fclose(global_file);
     return 1;
+}
+
+void generatePass() {
+    char pwd[20];
+    int rand_int;
+    srand(time(NULL));
+
+    for (int i = 0; i < 20; i++) {
+        rand_int = rand() % 72;
+        pwd[i] = CHARS[rand_int];
+    }
+    printf("%s\n", pwd);
 }
 
 void helpScreen() {
