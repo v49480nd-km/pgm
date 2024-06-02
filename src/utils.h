@@ -16,13 +16,14 @@
 #define ARRAY_LENGTH(arr) (sizeof(arr) / sizeof(arr[0]))
 #define MAX_GLOBAL_LENGTH 30
 
+char *generatePass();
 uint8_t checkGlobalPass();
 uint8_t findPass();
 uint8_t verifyGlobalPass();
+void deleteAll();
 void deletePass();
-void generatePass();
 void helpScreen();
 void setGlobalPass();
-void storePass();
+void storePass(char *pass);
 
 #endif

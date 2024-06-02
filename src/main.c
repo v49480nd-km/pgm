@@ -21,6 +21,7 @@ int main(int argc, char *argv[]) {
     if (strcmp(argv[1], HELP) == 0) {
         helpScreen();
     } else if (strcmp(argv[1], GEN) == 0) {
-        generatePass();
+        char *pass = generatePass();
+        storePass(pass);
     }
 }
