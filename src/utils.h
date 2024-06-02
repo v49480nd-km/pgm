@@ -3,15 +3,15 @@
 
 #include <stdint.h>
 #include <stdlib.h>
-
-#define CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
-
 // COMMANDS
 #define DELETE "-d"
 #define FIND   "-f"
 #define GEN    "-g"
 #define HELP   "-h"
-
+// NAMES
+#define CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
+#define GLOBAL_NAME "global.txt" // WILL CHANGE AND WHAT NOT
+#define LIST_NAME "passes.txt" // WILL CHANGE AND WHAT NOT
 // SIZES
 #define ARRAY_LENGTH(arr) (sizeof(arr) / sizeof(arr[0]))
 #define MAX_GLOBAL_LENGTH 30

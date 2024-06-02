@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <time.h>
 
@@ -6,7 +7,7 @@
 
 uint8_t checkGlobalPass() {
     FILE *global_file;
-    global_file = fopen("password.txt", "r");
+    global_file = fopen(GLOBAL_NAME, "r");
 
     if (global_file == NULL) {
         return 0;
@@ -53,7 +54,7 @@ void setGlobalPass() {
         user_password = temp;
     }
 
-    global_file = fopen("password.txt", "w");
+    global_file = fopen(GLOBAL_NAME, "w");
     if (global_file == NULL) {
         printf("Error setting password\n");
         exit(0);
@@ -65,7 +66,8 @@ void setGlobalPass() {
 
 void storePass(char *pass) {
     FILE *pass_file;
-    pass_file = fopen("passes.txt", "a");
+    pass_file = fopen(LIST_NAME, "a");
     fprintf(pass_file, "%s\n", pass);
     fclose(pass_file);
+    printf("Password Generated\n");
 }
