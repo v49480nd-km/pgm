@@ -1,5 +1,7 @@
 build/CMakeFiles
 build/pgm
+build/*.txt
+spike/
 
 # Added by cargo
 
