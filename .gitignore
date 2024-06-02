@@ -1,6 +1,5 @@
 build/CMakeFiles
 build/pgm
+build/*.txt
 
-# Added by cargo
-
-/target
+spike/

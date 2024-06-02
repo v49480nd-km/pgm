@@ -1,48 +1,25 @@
 #ifndef __UTILS_H__
 #define __UTILS_H__
 
-#include <stdlib.h>
+#include <stdint.h>
 
-/* CLI MACROS */
+// COMMANDS
 #define DELETE "-d"
-#define DELETE_ALL "-D"
-#define GEN "-g"
-#define HELP "-h"
-#define LIST "-l"
-#define SET "-s"
-/* SIZING MACROS */
-#define DESC_LEN 4
-#define NUM_CHARS (int)(sizeof(PWD_CHARS) / sizeof(PWD_CHARS[0]) - 1)
-#define PHRASE_LEN 30
-#define PWD_CHARS "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()"
-#define PWD_LEN 20
-#define STORAGE_LEN 25
-#define MAX_LINES 100
-#define LENGTH(a) sizeof(a) / sizeof(a[0])
+#define FIND   "-f"
+#define GEN    "-g"
+#define HELP   "-h"
 
-typedef struct Pair {
-    char *desc; /* e.g. youtube */
-    char *pwd;
-    struct Pair *next;
-} Pair;
+// SIZES
+#define ARRAY_LENGTH(arr) (sizeof(arr) / sizeof(arr[0]))
+#define MAX_GLOBAL_LENGTH 30
 
-/* GENERATE SECTION */
-int _checkPassphrase(void);
-void genPwd(Pair *pair);
-void getDesc(char *desc); /* formerly id sorry for confusion */
-void initPair(Pair *pair);
-void setPassphrase(void);
-/* LIST SECTION */
-void listPairs(void);
-/* DELETE SECTION */
-int searchId(void);
-void deletePair(int del_line);
-void deletePairs(void);
-void _switchFiles(void);
-/* HELP SECTION */
-void helpScreen(void);
-/* STORAGE SECTION */
-void hashify(const char *key);
-void storePair(Pair *pair);
+uint8_t checkGlobalPass();
+uint8_t findPass();
+uint8_t verifyGlobalPass();
+void deletePass();
+void generatePass();
+void helpScreen();
+void setGlobalPass();
+void storePass();
 
 #endif
