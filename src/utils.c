@@ -4,18 +4,6 @@
 
 #include "utils.h"
 
-char *generatePass() {
-    char *pwd = (char*)malloc(20 * sizeof(char));
-    int rand_int;
-    srand(time(NULL));
-
-    for (int i = 0; i < 20; i++) {
-        rand_int = rand() % 72;
-        *pwd[i] = CHARS[rand_int];
-    }
-    return pwd;
-}
-
 uint8_t checkGlobalPass() {
     FILE *global_file;
     global_file = fopen("password.txt", "r");
@@ -25,6 +13,16 @@ uint8_t checkGlobalPass() {
     }
     fclose(global_file);
     return 1;
+}
+
+void generatePass(char *pass) {
+    int rand_int;
+    srand(time(NULL));
+
+    for (int i = 0; i < PWD_LEN; i++) {
+        rand_int = rand() % 72;
+        pass[i] = CHARS[rand_int];
+    }
 }
 
 void helpScreen() {
@@ -68,6 +66,6 @@ void setGlobalPass() {
 void storePass(char *pass) {
     FILE *pass_file;
     pass_file = fopen("passes.txt", "a");
-    fputs(pass, pass_file);
+    fprintf(pass_file, "%s\n", pass);
     fclose(pass_file);
 }
