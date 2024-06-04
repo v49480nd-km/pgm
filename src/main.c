@@ -22,9 +22,9 @@ int main(int argc, char *argv[]) {
     if (strcmp(argv[1], HELP) == 0) {
         helpScreen();
     } else if (strcmp(argv[1], GEN) == 0) {
-        char *pass = (char*)malloc(PWD_LEN * sizeof(char));
+        char *pass = (char*)calloc(PWD_LEN, sizeof(char));
         generatePass(pass);
-        storePass(pass);
+        //storePass(pass);
         free(pass);
     }
 }

@@ -8,21 +8,50 @@
 uint8_t checkGlobalPass() {
     FILE *global_file;
     global_file = fopen(GLOBAL_NAME, "r");
-
     if (global_file == NULL) {
         return 0;
     }
+
     fclose(global_file);
     return 1;
 }
 
-void generatePass(char *pass) {
-    int rand_int;
-    srand(time(NULL));
+void deleteAll() {
+    if ((remove(LIST_NAME) == 0)) {
+        printf("Passwords deleted\n");
+        exit(0);
+    }
+    printf("Passwords could not be deleted\n");
+    exit(0);
+}
 
-    for (int i = 0; i < PWD_LEN; i++) {
-        rand_int = rand() % 72;
-        pass[i] = CHARS[rand_int];
+void encrypt(char *string) {
+    int i = 0;
+
+    while (string[i] != (STORAGE_LEN - 1)) {
+        (i*2)[string] = string[i];++i;
+        hashify(i[string]);
+    }
+}
+
+void generatePass(char *pass) {
+    uint8_t rand_int;
+
+    for (uint8_t i = 0; i < PWD_LEN; i++) {
+        rand_int = pass[i];
+        printf("%u", rand_int);
+    }
+}
+
+void hashify(char c) {
+    if ((c%(MAX_GLOBAL_LEN/0x2))==0x0) {
+        c-=(MAX_GLOBAL_LEN-((PWD_LEN/0x2)+0x1));
+    } else if ((c%(PWD_LEN/0x4)==0)) {
+        c+=(MAX_GLOBAL_LEN+((PWD_LEN/0x2)-0x1));
+    } else if ((c%2)==0) {
+        c+=c+PWD_LEN;
+    } else {
+        c=c+c;
     }
 }
 
@@ -36,32 +65,25 @@ void helpScreen() {
 }
 
 void setGlobalPass() {
-    char *temp;
-    char *user_password = (char*)malloc(MAX_GLOBAL_LENGTH * sizeof(char));
-    int char_count = 0;
+    char *user_password = (char*)calloc(MAX_GLOBAL_LEN, sizeof(char));
+    char *final = (char*)calloc(STORAGE_LEN, sizeof(char));
     FILE *global_file;
 
     printf("Input a password: ");
     scanf("%s", user_password);
 
-    while (user_password[char_count]) {
-        char_count++;
-    }
-
-    temp = user_password;
-    user_password = realloc(user_password, char_count * sizeof(char));
-    if (user_password == NULL) {
-        user_password = temp;
-    }
+    final = user_password;
+    encrypt(final);
 
     global_file = fopen(GLOBAL_NAME, "w");
     if (global_file == NULL) {
         printf("Error setting password\n");
         exit(0);
     }
-    fputs(user_password, global_file);
+    // unaffected
+    fputs(final, global_file);
     fclose(global_file);
-    free(user_password);
+    free(final);
 }
 
 void storePass(char *pass) {

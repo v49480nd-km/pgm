@@ -5,6 +5,7 @@
 #include <stdlib.h>
 // COMMANDS
 #define DELETE "-d"
+#define DELETE_ALL "-D"
 #define FIND   "-f"
 #define GEN    "-g"
 #define HELP   "-h"
@@ -13,16 +14,18 @@
 #define GLOBAL_NAME "global.txt" // WILL CHANGE AND WHAT NOT
 #define LIST_NAME "passes.txt" // WILL CHANGE AND WHAT NOT
 // SIZES
-#define ARRAY_LENGTH(arr) (sizeof(arr) / sizeof(arr[0]))
-#define MAX_GLOBAL_LENGTH 30
-#define PWD_LEN 20
+#define MAX_GLOBAL_LEN 0x10
+#define PWD_LEN 0x10
+#define STORAGE_LEN 0x20
 
 uint8_t checkGlobalPass();
 uint8_t findPass();
 uint8_t verifyGlobalPass();
 void deleteAll();
 void deletePass();
+void encrypt(char *string);
 void generatePass(char *pass);
+void hashify(char c);
 void helpScreen();
 void setGlobalPass();
 void storePass(char *pass);
