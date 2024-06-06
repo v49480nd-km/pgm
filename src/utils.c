@@ -72,11 +72,12 @@ void setGlobalPass() {
     for (size_t i = 0x0; i < ARR_LEN(user_password); i++) {
         final[i] = user_password[i];
         final[i+0x8] = user_password[i];
-        if (!user_password[i]) {
+        if (!final[i]) {
             final[i] = 'x';
             final[i+0x8] = 'x';
         }
     }
+
     global_file = fopen(GLOBAL_NAME, "w");
     if (global_file == NULL) {
         printf("Error setting password\n");
