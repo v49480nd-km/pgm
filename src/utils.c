@@ -25,16 +25,13 @@ void deleteAll() {
     exit(0);
 }
 
-void encrypt(char *string) {
-    int i = 0;
-
-    while (string[i] != (STORAGE_LEN - 1)) {
-        (i*2)[string] = string[i];++i;
-        hashify(i[string]);
+void encrypt(char str[], size_t size) {
+    for (size_t i = 0; i < (size/2) - 1; i++) {
+        hashify(str[i]);
     }
 }
 
-void generatePass(char *pass) {
+void generatePass(char pass[]) {
     uint8_t rand_int;
 
     for (uint8_t i = 0; i < PWD_LEN; i++) {
@@ -65,28 +62,29 @@ void helpScreen() {
 }
 
 void setGlobalPass() {
-    char *user_password = (char*)calloc(MAX_GLOBAL_LEN, sizeof(char));
-    char *final = (char*)calloc(STORAGE_LEN, sizeof(char));
+    char user_password[MAX_GLOBAL_LEN];
+    char final[STORAGE_LEN];
     FILE *global_file;
 
     printf("Input a password: ");
     scanf("%s", user_password);
 
-    final = user_password;
-    encrypt(final);
+    for (size_t i = 0; i < ARR_LEN(user_password); i++) {
+        final[i] = user_password[i];
+        final[i+8] = user_password[i];
+    }
+    encrypt(final, ARR_LEN(final));
 
     global_file = fopen(GLOBAL_NAME, "w");
     if (global_file == NULL) {
         printf("Error setting password\n");
         exit(0);
     }
-    // unaffected
     fputs(final, global_file);
     fclose(global_file);
-    free(final);
 }
 
-void storePass(char *pass) {
+void storePass(char pass[]) {
     FILE *pass_file;
     pass_file = fopen(LIST_NAME, "a");
     fprintf(pass_file, "%s\n", pass);

@@ -25,4 +25,5 @@ target_compile_options(${PROJECT_NAME}
     -Wextra
     -Wpedantic
     -O3
+    -g
 )

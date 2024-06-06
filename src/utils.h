@@ -14,6 +14,7 @@
 #define GLOBAL_NAME "global.txt" // WILL CHANGE AND WHAT NOT
 #define LIST_NAME "passes.txt" // WILL CHANGE AND WHAT NOT
 // SIZES
+#define ARR_LEN(arr) sizeof(arr) / sizeof(arr[0])
 #define MAX_GLOBAL_LEN 0x10
 #define PWD_LEN 0x10
 #define STORAGE_LEN 0x20
@@ -23,11 +24,11 @@ uint8_t findPass();
 uint8_t verifyGlobalPass();
 void deleteAll();
 void deletePass();
-void encrypt(char *string);
-void generatePass(char *pass);
+void encrypt(char str[], size_t size);
+void generatePass(char pass[]);
 void hashify(char c);
 void helpScreen();
 void setGlobalPass();
-void storePass(char *pass);
+void storePass(char pass[]);
 
 #endif
