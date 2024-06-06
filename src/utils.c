@@ -63,7 +63,7 @@ void helpScreen() {
 
 void setGlobalPass() {
     char user_password[MAX_GLOBAL_LEN];
-    char final[STORAGE_LEN] = { 0 };
+    char final[STORAGE_LEN];
     FILE *global_file;
 
     printf("Input a password: ");
@@ -72,9 +72,11 @@ void setGlobalPass() {
     for (size_t i = 0x0; i < ARR_LEN(user_password); i++) {
         final[i] = user_password[i];
         final[i+0x8] = user_password[i];
+        if (!user_password[i]) {
+            final[i] = 'x';
+            final[i+0x8] = 'x';
+        }
     }
-    encrypt(final, ARR_LEN(final));
-
     global_file = fopen(GLOBAL_NAME, "w");
     if (global_file == NULL) {
         printf("Error setting password\n");
