@@ -63,15 +63,15 @@ void helpScreen() {
 
 void setGlobalPass() {
     char user_password[MAX_GLOBAL_LEN];
-    char final[STORAGE_LEN];
+    char final[STORAGE_LEN] = { 0 };
     FILE *global_file;
 
     printf("Input a password: ");
     scanf("%s", user_password);
 
-    for (size_t i = 0; i < ARR_LEN(user_password); i++) {
+    for (size_t i = 0x0; i < ARR_LEN(user_password); i++) {
         final[i] = user_password[i];
-        final[i+8] = user_password[i];
+        final[i+0x8] = user_password[i];
     }
     encrypt(final, ARR_LEN(final));
 
