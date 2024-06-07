@@ -69,13 +69,13 @@ void setGlobalPass() {
     printf("Input a password: ");
     scanf("%s", user_password);
 
+    for (size_t j = 0; j < ARR_LEN(final); j++) {
+        final[j] = 0;
+    }
+
     for (size_t i = 0x0; i < ARR_LEN(user_password); i++) {
         final[i] = user_password[i];
         final[i+0x8] = user_password[i];
-        if (!final[i]) {
-            final[i] = 'x';
-            final[i+0x8] = 'x';
-        }
     }
 
     global_file = fopen(GLOBAL_NAME, "w");
