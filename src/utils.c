@@ -62,22 +62,22 @@ void helpScreen() {
 }
 
 void setGlobalPass() {
-    char user_password[MAX_GLOBAL_LEN];
-    FILE *global_file;
+    char user_password[PWD_LEN] = {'\0'};
     char final[STORAGE_LEN];
+    FILE *global_file;
 
     printf("Input a password: ");
     scanf("%s", user_password);
 
     for (size_t h = 0x0; h < ARR_LEN(user_password); h++) {
-        if (!user_password[h]) {
+        if (user_password[h] == '\0') {
             user_password[h] = 'x';
         }
     }
 
     for (size_t i = 0x0, j = 0x0; i < ARR_LEN(final); i++, j++) {
-        if (j >= 15) {
-            j = 0;
+        if (j == PWD_LEN - 0x1) {
+            j = 0x0;
         }
         final[i] = user_password[j];
     }
