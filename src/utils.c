@@ -70,7 +70,7 @@ void setGlobalPass() {
     scanf("%s", user_password);
 
     for (size_t h = 0x0; h < ARR_LEN(user_password); h++) {
-        if (user_password[h] == NULL) {
+        if (!user_password[h]) {
             user_password[h] = 'x';
         }
     }
